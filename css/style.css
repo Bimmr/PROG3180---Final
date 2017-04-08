@@ -1,0 +1,21 @@
+/**
+ * Created by Randy on 02/20/17.
+*/
+
+/*Center the elements*/
+.center {
+    display: block;
+    margin: 0 auto;
+}
+
+/* JQuery validation styling */
+label.error {
+    color: #F00;
+    font-weight: bold;
+}
+
+input.error,
+select.error,
+textarea.error {
+    border: 1px red solid;
+}

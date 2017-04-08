@@ -1,0 +1,58 @@
+<!--
+Mobile Application Programming 
+Final Project
+Author: Randy Bimm
+Date:   4/8/17
+-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta charset="UTF-8">
+
+        <title>Book Worm</title>
+        <link rel="shortcut icon" href="img/rbFavicon.ico" type="image/x-icon">
+
+        <!--JavaScript-->
+        <script type="text/javascript" src="js/lib/jquery-2.1.4.js"></script>
+        <script type="text/javascript" src="js/lib/jquery.validate.js"></script>
+        <script type="text/javascript" src="js/lib/jquery.mobile-1.4.5.js"></script>
+
+        <script type="text/javascript" src="js/database.js"></script>
+        <script type="text/javascript" src="js/facade.js"></script>
+        <script type="text/javascript" src="js/DAL.js"></script>
+        <script type="text/javascript" src="js/global.js"></script>
+        <script type="text/javascript" src="js/util.js"></script>
+
+        <!--StyleSheet-->
+        <link rel="stylesheet" href="css/lib/jquery.mobile-1.4.5.css"/>
+        <link rel="stylesheet" href="css/style.css"/>
+    </head>
+    <body>
+
+        <div id="pageOne" data-role="page">
+            <header data-position="fixed" data-theme="b" data-role="header">
+                <h1>Final Project</h1>
+                <div data-role="navbar" data-position="fixed">
+                    <ul>
+                        <li><a href="#pageOne" data-icon="home" data-theme="a"
+                               class="ui-button-active ui-state-persist">
+                            One</a></li>
+                        <li><a href="#pageTwo" data-icon="plus" data-theme="a">
+                            Two</a>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+            <section data-role="content">
+                <h1>Page One</h1>
+                <p>Content!</p>
+            </section>
+            <footer data-position="fixed" data-theme="b" data-role="footer">
+                <h4>&copy; 2016 Randy Bimm</h4>
+            </footer>
+        </div>
+
+    </body>
+
+</html>
