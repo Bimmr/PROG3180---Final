@@ -26,7 +26,7 @@ var Books = {
      */
     select: function (id, sCallback, fCallback) {
         db.transaction(function (tx) {
-            var query = "SELECT * FROM Books WHERE id=?";
+            var query = "SELECT * FROM Books WHERE id=?;";
             var options = [id];
 
             tx.executeSql(query, options, sCallback, fCallback);
@@ -45,7 +45,8 @@ var Books = {
                 "bookName=?," +
                 "bookAuthor=?," +
                 "bookPublishDate=?," +
-                "bookTypeId=?";
+                "bookTypeId=?" +
+                "WHERE bookId=?;";
             tx.executeSql(query, options, sCallback, fCallback);
         }, errorHandler, successfulTransaction);
 
@@ -58,7 +59,7 @@ var Books = {
      */
     delete: function (id, sCallback, fCallback) {
         db.transaction(function (tx) {
-            var query = "DELETE FROM Books WHERE id=?";
+            var query = "DELETE FROM Books WHERE id=?;";
             var options = [id];
 
             tx.executeSql(query, options, sCallback, fCallback);
@@ -72,7 +73,7 @@ var Books = {
      */
     SelectAll: function (sCallback, fCallback) {
         db.transaction(function (tx) {
-                var query = "SELECT * FROM Books";
+                var query = "SELECT * FROM Books;";
                 tx.executeSql(query, [], sCallback, fCallback);
             },
             errorHandler, successfulTransaction);
@@ -103,7 +104,7 @@ var Reviews = {
      */
     select: function (id, sCallback, fCallback) {
         db.transaction(function (tx) {
-            var query = "SELECT * FROM Reviews WHERE id=?";
+            var query = "SELECT * FROM Reviews WHERE id=?;";
             var options = [id];
 
             tx.executeSql(query, options, sCallback, fCallback);
@@ -118,14 +119,15 @@ var Reviews = {
      */
     update: function (options, sCallback, fCallback) {
         db.transaction(function (tx) {
-            var query = "UPDATE Reviewss SET" +
+            var query = "UPDATE Reviews SET" +
                 "reviewName=?," +
                 "reviewEmail=?," +
                 "reviewDate=?," +
                 "reviewTitle=?," +
                 "reviewText=?," +
                 "reviewVotes=?," +
-                "bookTypeId=?";
+                "bookTypeId=?" +
+                "WHERE reviewId=?;";
             tx.executeSql(query, options, sCallback, fCallback);
         }, errorHandler, successfulTransaction);
     },
@@ -137,7 +139,7 @@ var Reviews = {
      */
     delete: function (id, sCallback, fCallback) {
         db.transaction(function (tx) {
-            var query = "DELETE FROM Books WHERE id=?";
+            var query = "DELETE FROM Reviews WHERE id=?;";
             var options = [id];
 
             tx.executeSql(query, options, sCallback, fCallback);
@@ -151,8 +153,84 @@ var Reviews = {
      */
     SelectAll: function (sCallback, fCallback) {
         db.transaction(function (tx) {
-                var query = "SELECT * FROM Books";
+                var query = "SELECT * FROM Reviews;";
                 tx.executeSql(query, [], sCallback, fCallback);
+            },
+            errorHandler, successfulTransaction);
+    }
+}
+var Reviews = {
+    /**
+     * Insert into the database
+     * @param options
+     * @param sCallback
+     * @param fCallback
+     */
+    insert: function (options, sCallback, fCallback) {
+        db.transaction(function (tx) {
+                var query = "INSERT INTO Reviews VALUES (" +
+                    "NULL,?,?" +
+                    ");";
+                tx.executeSql(query, options, sCallback, fCallback);
+            },
+            errorHandler, successfulTransaction);
+
+    },
+    /**
+     * Select a specific record from the database
+     * @param id
+     * @param sCallback
+     * @param fCallback
+     */
+    select: function (id, sCallback, fCallback) {
+        db.transaction(function (tx) {
+            var query = "SELECT * FROM Reviews WHERE id=?;";
+            var options = [id];
+
+            tx.executeSql(query, options, sCallback, fCallback);
+        }, errorHandler, successfulTransaction);
+
+    },
+    /**
+     * Update a specific record into the database
+     * @param options
+     * @param sCallback
+     * @param fCallback
+     */
+    update: function (options, sCallback, fCallback) {
+        db.transaction(function (tx) {
+            var query = "UPDATE Reviews SET" +
+                "savedURI=?," +
+                "savedEmail=?" +
+                "WHERE id=?;";
+            tx.executeSql(query, options, sCallback, fCallback);
+        }, errorHandler, successfulTransaction);
+    },
+    /**
+     * Delete a specific record from the database
+     * @param id
+     * @param sCallback
+     * @param fCallback
+     */
+    delete: function (id, sCallback, fCallback) {
+        db.transaction(function (tx) {
+            var query = "DELETE FROM SavedBooks WHERE id=?;";
+            var options = [id];
+
+            tx.executeSql(query, options, sCallback, fCallback);
+        }, errorHandler, successfulTransaction);
+
+    },
+    /**
+     * Select all records from the database
+     * @param sCallback
+     * @param fCallback
+     */
+    SelectAll: function (email, sCallback, fCallback) {
+        db.transaction(function (tx) {
+                var query = "SELECT * FROM SavedBooks WHERE savedEmail=?;";
+                var options = [email];
+                tx.executeSql(query, options, sCallback, fCallback);
             },
             errorHandler, successfulTransaction);
     }
