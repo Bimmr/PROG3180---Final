@@ -12,14 +12,11 @@ function capturePhoto(sCallback, fCallback) {
     navigator.camera.getPicture(options, sCallback, fCallback);
 }
 
-
-    // capturePhoto(
-    //     function (imageURI) {
-    //         //Success
-    //         var image = $("#imgSnap");
-    //         image.prop("src", imageURI);
-    //     },
-    //     function (ex) {
-    //         //Fail
-    //         alert("Failed: " + ex);
-    //     });
+function savePhoto() {
+    capturePhoto(
+        function (imageURI) {
+            //Add Saved to database
+        }, function (ex) {
+            alert("Failed: " + ex);
+        });
+}
