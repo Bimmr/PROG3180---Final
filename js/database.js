@@ -6,9 +6,9 @@ var db;
 var DB = {
 
     createDatabase: function () {
-        var shortName = "Name";
+        var shortName = "BookWorms";
         var version = "1.0";
-        var displayName = "DB for Name";
+        var displayName = "DB for BookWorms";
         var dbSize = 2 * 1024 * 1024;
 
         console.info("Creating database...");
@@ -21,28 +21,12 @@ var DB = {
 
         console.info("Create Tables ...");
 
-        //Create Book Table
-        db.transaction(function (tx) {
-            var query = "CREATE TABLE IF NOT EXISTS Books (" +
-                "bookId             INTEGER      NOT NULL       PRIMARY KEY     AUTOINCREMENT," +
-                "bookName           VARCHAR(25)  NOT NULL," +
-                "bookAuthor         VARCHAR(25)  NOT NULL," +
-                "bookPublishDate    DATETIME             ," +
-                "bookTypeId         INTEGER      NOT NULL,   "
-                "FOREIGN KEY(bookTypeId) REFERENCES BookTypes(typeId));" +
-            ");";
-
-            tx.executeSql(query, [], function (tx, result) {
-                console.info("Success: Book Table created");
-            }, errorHandler);
-        }, errorHandler, successfulTransaction);
-
         //Create Book Type
         db.transaction(function (tx) {
             var query = "CREATE TABLE IF NOT EXISTS BookTypes (" +
                 "typeId     INTEGER      NOT NULL       PRIMARY KEY     AUTOINCREMENT," +
-                "typeName   VARCHAR(25)  NOT NULL," +
-            ");";
+                "typeName   VARCHAR(25)  NOT NULL" +
+                ");";
 
             tx.executeSql(query, [], function (tx, result) {
                 console.info("Success: Type Table created");
@@ -61,19 +45,35 @@ var DB = {
             }, errorHandler);
         }, errorHandler, successfulTransaction);
 
+        //Create Book Table
+        db.transaction(function (tx) {
+            var query = "CREATE TABLE IF NOT EXISTS Books (" +
+                "bookId             INTEGER      NOT NULL       PRIMARY KEY     AUTOINCREMENT," +
+                "bookName           VARCHAR(25)  NOT NULL," +
+                "bookAuthor         VARCHAR(25)  NOT NULL," +
+                "bookPublishDate    DATETIME," +
+                "bookTypeId         INTEGER      NOT NULL," +
+                "FOREIGN KEY(bookTypeId) REFERENCES BookTypes(typeId)" +
+                ");";
+
+            tx.executeSql(query, [], function (tx, result) {
+                console.info("Success: Book Table created");
+            }, errorHandler);
+        }, errorHandler, successfulTransaction);
+
         //Create Review Table
         db.transaction(function (tx) {
             var query = "CREATE TABLE IF NOT EXISTS Reviews (" +
-                "reviewId             INTEGER      NOT NULL       PRIMARY KEY     AUTOINCREMENT," +
-                "reviewName           VARCHAR(25)  NOT NULL," +
-                "reviewEmail          VARCHAR(25)  NOT NULL," +
-                "reviewDate           DATETIME     NOT NULL," +
-                "reviewTitle          VARCHAR(25)  NOT NULL," +
+                "reviewId             INTEGER       NOT NULL       PRIMARY KEY     AUTOINCREMENT," +
+                "reviewName           VARCHAR(25)   NOT NULL," +
+                "reviewEmail          VARCHAR(25)   NOT NULL," +
+                "reviewDate           DATETIME      NOT NULL," +
+                "reviewTitle          VARCHAR(25)   NOT NULL," +
                 "reviewText           VARCHAR(100)  NOT NULL," +
-                "reviewVotes          INTEGER      NOT NULL,"
-                "bookId               INTEGER      NOT NULL,"
-                "FOREIGN KEY(bookId) REFERENCES Book(bookId));" +
-            ");";
+                "reviewVotes          INTEGER       NOT NULL," +
+                "bookId               INTEGER       NOT NULL," +
+                "FOREIGN KEY(bookId) REFERENCES Book(bookId)" +
+                ");";
 
             tx.executeSql(query, [], function (tx, result) {
                 console.info("Success: Review Table created");
@@ -85,8 +85,8 @@ var DB = {
             var query = "CREATE TABLE IF NOT EXISTS SavedBooks (" +
                 "savedId             INTEGER      NOT NULL       PRIMARY KEY     AUTOINCREMENT," +
                 "savedURI           VARCHAR(50)  NOT NULL," +
-                "savedEmail         VARCHAR(50)  NOT NULL," +
-            ");";
+                "savedEmail         VARCHAR(50)  NOT NULL" +
+                ");";
 
             tx.executeSql(query, [], function (tx, result) {
                 console.info("Success: SavedBooks Table created");
