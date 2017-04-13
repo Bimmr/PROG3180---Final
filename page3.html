@@ -18,10 +18,44 @@ Date:   4/8/17
         </div>
     </header>
     <section data-role="content">
-        <h1>Page 3</h1>
-        <p>Content!</p>
+        <h1>Write a Review!</h1>
+
+        <form id="frmWriteReview">
+            <div data-role="fieldcontain">
+                <label for="txtBookTitle">Book Title:</label>
+                <input type="text" id="txtBookTitle" name="txtBookTitle" data-clear-btn="true">
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="txtUserName">Your User Name:</label>
+                <input type="text" id="txtUserName" name="txtUserName" data-clear-btn="true">
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="txtEmail">Your Email:</label>
+                <input type="text" id="txtEmail" name="txtBookTitle" data-clear-btn="true">
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="txtReviewTitle">Review Title:</label>
+                <input type="text" id="txtReviewTitle" name="txtReviewTitle" data-clear-btn="true">
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="txtReviewText">Review:</label>
+                <textarea id="txtReviewText" name="txtReviewText" data-clear-btn="true"></textarea>
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="datReviewDate">Book Title:</label>
+                <input type="text" id="datReviewDate" name="datReviewDate" data-clear-btn="true">
+            </div>
+
+            <button type="submit" id="btnSubmit">Submit Review</button>
+
+        </form>
     </section>
     <footer data-position="fixed" data-theme="b" data-role="footer">
-        <h4>&copy; 2016 Randy Bimm</h4>
+        <h4>&copy; 2017 Randy Bimm, Derek Fusari</h4>
     </footer>
 </div>

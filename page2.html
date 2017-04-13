@@ -42,25 +42,33 @@ Date:   4/8/17
     </header>
     <section data-role="content">
         <h1>Enter Book Information:</h1>
-            <form>
-
+        <form id="frmSearchBook">
+            <div data-role="fieldcontain">
                 <label for="txtTitle">Book Title:</label>
-                <input type="text" id="txtTitle" name="txtTitle" required>
+                <input type="text" id="txtTitle" name="txtTitle" data-clear-btn="true">
+            </div>
 
-                <label for="txtAuthor">Author: </label>
-                <input type="text" id="txtAuthor" name="txtAuthor" required>
+            <div data-role="fieldcontain">
+            <label for="txtAuthor">Author: </label>
+            <input type="text" id="txtAuthor" name="txtAuthor" data-clear-btn="true">
+            </div>
 
-                <label for="txtGenre">Genre: </label>
-                <input type="text" id="txtGenre" name="txtGenre">
+            <div data-role="fieldcontain">
+            <label for="txtGenre">Genre: </label>
+            <input type="text" id="txtGenre" name="txtGenre" data-clear-btn="true">
+            </div>
 
-                <label for="txtDatePublished">Date Published</label>
-                <input type="text" id="txtDatePublished" name="txtDatePublished">
+            <div data-role="fieldcontain">
+            <label for="datDatePublished">Publish Date:</label>
+            <input type="date" id="datDatePublished" name="datDatePublished" data-clear-btn="true">
+            </div>
 
 
+<button id="btnSearch">Search</button>
 
-            </form>
-    </section>
-    <footer data-position="fixed" data-theme="b" data-role="footer">
-        <h4>&copy; 2017 Randy Bimm, Derek Fusari</h4>
-    </footer>
+</form>
+</section>
+<footer data-position="fixed" data-theme="b" data-role="footer">
+    <h4>&copy; 2017 Randy Bimm, Derek Fusari</h4>
+</footer>
 </div>
