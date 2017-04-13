@@ -31,27 +31,34 @@ Date:   4/8/17
 </head>
 <body>
 
+<!--Navbar-->
+<div data-role="panel" class="navbar" id="navbar" data-position-fixed="true" data-display="overlay"
+     data-theme="b">
+    <h1>Menu</h1>
+    <hr>
+    <ul data-role="listview">
+        <li data-icon="home"><a href="#pageHome">HOME</a></li>
+        <li data-icon="search"><a href="#pageReviewSearch">SEARCH </a></li>
+        <li data-icon="grid"><a href="#pageSaved">SAVED</a></li>
+        <li data-icon="gear"><a href="#pageSettings">SETTINGS</a></li>
+    </ul>
+    <img src="img/icon.png">
+    <div class="bottom-nav">
+        <hr>
+        <p>&copy; 2017 Randy Bimm, Derek Fusari</p>
+    </div>
+</div>
+
+<!--Home Page-->
 <div id="pageHome" data-role="page">
-    <header data-position="fixed" data-theme="a" data-role="header">
+    <header data-position="fixed" data-role="header">
         <h1>Final Project</h1>
-        <div data-role="navbar" data-position="fixed">
-            <ul>
-                <li><a href="#pageHome" data-icon="home"
-                       class="ui-button-active ui-state-persist">
-                    Home</a></li>
-                <li><a href="#pageReviewSearch" data-icon="bullets">Search </a></li>
-                <li><a href="#pageSaved" data-icon="grid">Saved </a></li>
-                <li><a href="#pageSettings" data-icon="edit">Settings </a></li>
-            </ul>
-        </div>
+        <a href="#navbar" data-icon="bars" data-iconpos="notext" data-ajax="false"></a>
     </header>
     <section data-role="content">
         <h1>Home</h1>
         <p>Content!</p>
     </section>
-    <footer data-position="fixed" data-theme="a" data-role="footer">
-        <h4>&copy; 2017 Randy Bimm, Derek Fusari</h4>
-    </footer>
 </div>
 
 </body>

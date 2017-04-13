@@ -17,6 +17,13 @@ function init() {
     $.get("reviews.html", function (data) {
         $("body").append(data);
     });
+    $('#navbar').enhanceWithin().panel();
+
+
+        $("body").on( "swiperight", function( e ) {
+                    $( "#navbar" ).panel( "open" );
+
+        });
 }
 
 /**
