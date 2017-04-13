@@ -14,10 +14,7 @@ $(document).ready(function () {
  * Init the page
  */
 function init() {
-    $.get("page2.html", function (data) {
-        $("body").append(data);
-    });
-    $.get("page3.html", function (data) {
+    $.get("reviews.html", function (data) {
         $("body").append(data);
     });
 }

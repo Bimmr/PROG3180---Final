@@ -1,0 +1,136 @@
+<!--
+Mobile Application Programming
+Final Project
+Author: Randy Bimm
+Date:   4/8/17
+-->
+<div id="pageReviewSearch" data-role="page">
+    <header data-position="fixed" data-theme="b" data-role="header">
+        <h1>Book Worms</h1>
+        <div data-role="navbar" data-position="fixed">
+            <ul>
+                <li><a href="#pageHome" data-icon="home" data-theme="a">Home</a></li>
+                <li><a href="#pageSearchBook" data-icon="plus" data-theme="a" class="ui-button-active ui-state-persist">
+                    Search</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <section data-role="content">
+        <h1>Search for a book:</h1>
+        <form id="frmSearchBook">
+            <div data-role="fieldcontain">
+                <label for="txtTitle">Book Title:</label>
+                <input type="text" id="txtTitle" name="txtTitle" data-clear-btn="true">
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="txtAuthor">Author: </label>
+                <input type="text" id="txtAuthor" name="txtAuthor" data-clear-btn="true">
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="txtGenre">Genre: </label>
+                <input type="text" id="txtGenre" name="txtGenre" data-clear-btn="true">
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="datDatePublished">Publish Date:</label>
+                <input type="date" id="datDatePublished" name="datDatePublished" data-clear-btn="true">
+            </div>
+
+            <input type="button" data-role="button" id="btnSearch">Search</input>
+            <!--Goto pagesShowReviews-->
+
+        </form>
+    </section>
+    <footer data-position="fixed" data-theme="b" data-role="footer">
+        <h4>&copy; 2017 Randy Bimm, Derek Fusari</h4>
+    </footer>
+</div>
+
+
+<div id="pageShowReviews" data-role="page">
+    <header data-position="fixed" data-theme="b" data-role="header">
+        <h1>Book Worms</h1>
+        <div data-role="navbar" data-position="fixed">
+            <ul>
+                <li><a href="#pageHome" data-icon="home" data-theme="a">Home</a></li>
+                <li><a href="#pageReviewSearch" data-icon="home" data-theme="a" class="ui-button-active ui-state-persist">
+                    Search</a></li>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <section data-role="content">
+        <h1>Show Reviews!</h1>
+
+        <-- Add All reviews as list
+        |--------------------------------------------------|
+        |Review Name - Review Date                         |
+        |Review Text                    Like Review        |
+        |                                                  |
+        |--------------------------------------------------|
+        | Add New Review (When clicked, open pageAddReview)|
+        |--------------------------------------------------|
+        -->
+
+    </section>
+    <footer data-position="fixed" data-theme="b" data-role="footer">
+        <h4>&copy; 2017 Randy Bimm, Derek Fusari</h4>
+    </footer>
+</div>
+
+<div id="pageAddReview" data-role="page">
+    <header data-position="fixed" data-theme="b" data-role="header">
+        <h1>Book Worms</h1>
+        <div data-role="navbar" data-position="fixed">
+            <ul>
+                <li><a href="#pageHome" data-icon="home" data-theme="a">Home</a></li>
+                <li><a href="#pageReviewSearch" data-icon="home" data-theme="a">Search Book</a></li>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <section data-role="content">
+        <h1>Write a Review!</h1>
+
+        <form id="frmWriteReview">
+            <div data-role="fieldcontain">
+                <label for="txtBookTitle">Book Title:</label>
+                <input type="text" id="txtBookTitle" name="txtBookTitle" data-clear-btn="true">
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="txtUserName">Your User Name:</label>
+                <input type="text" id="txtUserName" name="txtUserName" data-clear-btn="true">
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="txtEmail">Your Email:</label>
+                <input type="text" id="txtEmail" name="txtBookTitle" data-clear-btn="true">
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="txtReviewTitle">Review Title:</label>
+                <input type="text" id="txtReviewTitle" name="txtReviewTitle" data-clear-btn="true">
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="txtReviewText">Review:</label>
+                <textarea id="txtReviewText" name="txtReviewText" data-clear-btn="true"></textarea>
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="datReviewDate">Book Title:</label>
+                <input type="text" id="datReviewDate" name="datReviewDate" data-clear-btn="true">
+            </div>
+
+            <input type="submit" data-role="button" id="btnSubmit">Submit Review</input>
+
+        </form>
+    </section>
+    <footer data-position="fixed" data-theme="b" data-role="footer">
+        <h4>&copy; 2017 Randy Bimm, Derek Fusari</h4>
+    </footer>
+</div>
