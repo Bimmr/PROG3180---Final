@@ -23,7 +23,8 @@ textarea.error {
 #navbar img{
     position: relative;
     top: 40px;
-    left: -10px;
+    margin: 0 auto;
+    width:100%;
 }
 #navbar .bottom-nav{
     position: absolute;
