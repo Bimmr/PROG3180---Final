@@ -5,14 +5,15 @@ Author: Randy Bimm
 Date:   4/8/17
 -->
 <div id="pageReviewSearch" data-role="page">
-    <header data-position="fixed" data-theme="b" data-role="header">
+    <header data-position="fixed" data-role="header">
         <h1>Book Worms</h1>
         <div data-role="navbar" data-position="fixed">
             <ul>
-                <li><a href="#pageHome" data-icon="home" data-theme="a">Home</a></li>
-                <li><a href="#pageSearchBook" data-icon="plus" data-theme="a" class="ui-button-active ui-state-persist">
-                    Search</a>
-                </li>
+                <li><a href="#pageHome" data-icon="home">Home</a></li>
+                <li><a href="#pageReviewSearch" data-icon="bullets"
+                       class="ui-button-active ui-state-persist">Search </a></li>
+                <li><a href="#pageSaved" data-icon="grid">Saved </a></li>
+                <li><a href="#pageSettings" data-icon="edit">Settings </a></li>
             </ul>
         </div>
     </header>
@@ -44,7 +45,7 @@ Date:   4/8/17
 
         </form>
     </section>
-    <footer data-position="fixed" data-theme="b" data-role="footer">
+    <footer data-position="fixed" data-role="footer">
         <h4>&copy; 2017 Randy Bimm, Derek Fusari</h4>
     </footer>
 </div>
@@ -55,10 +56,11 @@ Date:   4/8/17
         <h1>Book Worms</h1>
         <div data-role="navbar" data-position="fixed">
             <ul>
-                <li><a href="#pageHome" data-icon="home" data-theme="a">Home</a></li>
-                <li><a href="#pageReviewSearch" data-icon="home" data-theme="a" class="ui-button-active ui-state-persist">
-                    Search</a></li>
-                </li>
+                <li><a href="#pageHome" data-icon="home">Home</a></li>
+                <li><a href="#pageReviewSearch" data-icon="bullets"
+                       class="ui-button-active ui-state-persist">Search </a></li>
+                <li><a href="#pageSaved" data-icon="grid">Saved </a></li>
+                <li><a href="#pageSettings" data-icon="edit">Settings </a></li>
             </ul>
         </div>
     </header>
@@ -67,28 +69,30 @@ Date:   4/8/17
 
         <-- Add All reviews as list
         |--------------------------------------------------|
-        |Review Name - Review Date                         |
-        |Review Text                    Like Review        |
-        |                                                  |
+        |Review Name - Review Date |
+        |Review Text Like Review |
+        | |
         |--------------------------------------------------|
         | Add New Review (When clicked, open pageAddReview)|
         |--------------------------------------------------|
         -->
 
     </section>
-    <footer data-position="fixed" data-theme="b" data-role="footer">
+    <footer data-position="fixed" data-role="footer">
         <h4>&copy; 2017 Randy Bimm, Derek Fusari</h4>
     </footer>
 </div>
 
 <div id="pageAddReview" data-role="page">
-    <header data-position="fixed" data-theme="b" data-role="header">
+    <header data-position="fixed" data-role="header">
         <h1>Book Worms</h1>
         <div data-role="navbar" data-position="fixed">
             <ul>
-                <li><a href="#pageHome" data-icon="home" data-theme="a">Home</a></li>
-                <li><a href="#pageReviewSearch" data-icon="home" data-theme="a">Search Book</a></li>
-                </li>
+                <li><a href="#pageHome" data-icon="home">Home</a></li>
+                <li><a href="#pageReviewSearch" data-icon="bullets"
+                       class="ui-button-active ui-state-persist">Search </a></li>
+                <li><a href="#pageSaved" data-icon="grid">Saved </a></li>
+                <li><a href="#pageSettings" data-icon="edit">Settings </a></li>
             </ul>
         </div>
     </header>
@@ -130,7 +134,7 @@ Date:   4/8/17
 
         </form>
     </section>
-    <footer data-position="fixed" data-theme="b" data-role="footer">
+    <footer data-position="fixed" data-role="footer">
         <h4>&copy; 2017 Randy Bimm, Derek Fusari</h4>
     </footer>
 </div>

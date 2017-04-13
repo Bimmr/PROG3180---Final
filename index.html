@@ -6,53 +6,54 @@ Date:   4/8/17
 -->
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta name="viewport" content="width=device-width initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-        <meta charset="UTF-8">
+<head>
+    <meta name="viewport" content="width=device-width initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8">
 
-        <title>Book Worm</title>
-        <link rel="shortcut icon" href="img/rbFavicon.ico" type="image/x-icon">
+    <title>Book Worm</title>
+    <link rel="shortcut icon" href="img/rbFavicon.ico" type="image/x-icon">
 
-        <!--JavaScript-->
-        <script type="text/javascript" src="js/lib/jquery-2.1.4.js"></script>
-        <script type="text/javascript" src="js/lib/jquery.validate.js"></script>
-        <script type="text/javascript" src="js/lib/jquery.mobile-1.4.5.js"></script>
+    <!--JavaScript-->
+    <script type="text/javascript" src="js/lib/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.validate.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.mobile-1.4.5.js"></script>
 
-        <script type="text/javascript" src="js/database.js"></script>
-        <script type="text/javascript" src="js/facade.js"></script>
-        <script type="text/javascript" src="js/DAL.js"></script>
-        <script type="text/javascript" src="js/global.js"></script>
-        <script type="text/javascript" src="js/util.js"></script>
-        <script src="js/camera.js"></script>
+    <script type="text/javascript" src="js/database.js"></script>
+    <script type="text/javascript" src="js/facade.js"></script>
+    <script type="text/javascript" src="js/DAL.js"></script>
+    <script type="text/javascript" src="js/global.js"></script>
+    <script type="text/javascript" src="js/util.js"></script>
+    <script src="js/camera.js"></script>
 
-        <!--StyleSheet-->
-        <link rel="stylesheet" href="css/lib/jquery.mobile-1.4.5.css"/>
-        <link rel="stylesheet" href="css/style.css"/>
-    </head>
-    <body>
+    <!--StyleSheet-->
+    <link rel="stylesheet" href="css/lib/jquery.mobile-1.4.5.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
 
-        <div id="pageHome" data-role="page">
-            <header data-position="fixed" data-theme="b" data-role="header">
-                <h1>Final Project</h1>
-                <div data-role="navbar" data-position="fixed">
-                    <ul>
-                        <li><a href="#pageHome" data-icon="home" data-theme="a"
-                               class="ui-button-active ui-state-persist">
-                            Home</a></li>
-                        <li><a href="#pageReviewSearch" data-icon="plus" data-theme="a">Search </a>
-                        </li>
-                    </ul>
-                </div>
-            </header>
-            <section data-role="content">
-                <h1>Home</h1>
-                <p>Content!</p>
-            </section>
-            <footer data-position="fixed" data-theme="b" data-role="footer">
-                <h4>&copy; 2017 Randy Bimm, Derek Fusari</h4>
-            </footer>
+<div id="pageHome" data-role="page">
+    <header data-position="fixed" data-theme="a" data-role="header">
+        <h1>Final Project</h1>
+        <div data-role="navbar" data-position="fixed">
+            <ul>
+                <li><a href="#pageHome" data-icon="home"
+                       class="ui-button-active ui-state-persist">
+                    Home</a></li>
+                <li><a href="#pageReviewSearch" data-icon="bullets">Search </a></li>
+                <li><a href="#pageSaved" data-icon="grid">Saved </a></li>
+                <li><a href="#pageSettings" data-icon="edit">Settings </a></li>
+            </ul>
         </div>
+    </header>
+    <section data-role="content">
+        <h1>Home</h1>
+        <p>Content!</p>
+    </section>
+    <footer data-position="fixed" data-theme="a" data-role="footer">
+        <h4>&copy; 2017 Randy Bimm, Derek Fusari</h4>
+    </footer>
+</div>
 
-    </body>
+</body>
 
 </html>
