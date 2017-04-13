@@ -1,5 +1,5 @@
 /**
- * Created by Bimmr on 04/10/17.
+ * Created by Randy, Derek on 04/10/17.
  */
 
 function capturePhoto(sCallback, fCallback) {
