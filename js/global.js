@@ -14,7 +14,7 @@ $(document).ready(function () {
  * Init the page
  */
 function init() {
-    $.get("reviews.html", function (data) {
+    $.get("./reviews.html", function (data) {
         $("body").append(data);
     });
     $('#navbar').enhanceWithin().panel();
