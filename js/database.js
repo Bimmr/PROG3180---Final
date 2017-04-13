@@ -85,6 +85,7 @@ var DB = {
             var query = "CREATE TABLE IF NOT EXISTS SavedBooks (" +
                 "savedId             INTEGER      NOT NULL       PRIMARY KEY     AUTOINCREMENT," +
                 "savedURI           VARCHAR(50)  NOT NULL," +
+                "savedEmail         VARCHAR(50)  NOT NULL," +
             ");";
 
             tx.executeSql(query, [], function (tx, result) {
