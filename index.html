@@ -6,61 +6,81 @@ Date:   4/8/17
 -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta charset="UTF-8">
+    <head>
+        <meta name="viewport" content="width=device-width initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta charset="UTF-8">
 
-    <title>Book Worm</title>
-    <link rel="shortcut icon" href="img/rbFavicon.ico" type="image/x-icon">
+        <title>Book Worm</title>
+        <link rel="shortcut icon" href="img/rbFavicon.ico" type="image/x-icon">
 
-    <!--JavaScript-->
-    <script type="text/javascript" src="js/lib/jquery-2.1.4.js"></script>
-    <script type="text/javascript" src="js/lib/jquery.validate.js"></script>
-    <script type="text/javascript" src="js/lib/jquery.mobile-1.4.5.js"></script>
+        <!--JavaScript-->
+        <script type="text/javascript" src="js/lib/jquery-2.1.4.js"></script>
+        <script type="text/javascript" src="js/lib/jquery.validate.js"></script>
+        <script type="text/javascript" src="js/lib/jquery.mobile-1.4.5.js"></script>
 
-    <script type="text/javascript" src="js/database.js"></script>
-    <script type="text/javascript" src="js/facade.js"></script>
-    <script type="text/javascript" src="js/DAL.js"></script>
-    <script type="text/javascript" src="js/global.js"></script>
-    <script type="text/javascript" src="js/util.js"></script>
-    <script src="js/camera.js"></script>
+        <script type="text/javascript" src="js/database.js"></script>
+        <script type="text/javascript" src="js/facade.js"></script>
+        <script type="text/javascript" src="js/DAL.js"></script>
+        <script type="text/javascript" src="js/global.js"></script>
+        <script type="text/javascript" src="js/util.js"></script>
+        <script src="js/camera.js"></script>
 
-    <!--StyleSheet-->
-    <link rel="stylesheet" href="css/lib/jquery.mobile-1.4.5.css"/>
-    <link rel="stylesheet" href="css/style.css"/>
-</head>
-<body>
+        <!--StyleSheet-->
+        <link rel="stylesheet" href="css/lib/jquery.mobile-1.4.5.css"/>
+        <link rel="stylesheet" href="css/style.css"/>
+    </head>
+    <body>
 
-<!--Navbar-->
-<div data-role="panel" class="navbar" id="navbar" data-position-fixed="true" data-display="overlay"
-     data-theme="b">
-    <h1>Menu</h1>
-    <hr>
-    <ul data-role="listview">
-        <li data-icon="home"><a href="#pageHome">HOME</a></li>
-        <li data-icon="search"><a href="#pageReviewSearch">SEARCH </a></li>
-        <li data-icon="grid"><a href="#pageSaved">SAVED</a></li>
-        <li data-icon="gear"><a href="#pageSettings">SETTINGS</a></li>
-    </ul>
-    <img src="img/icon.png">
-    <div class="bottom-nav">
-        <hr>
-        <p>&copy; 2017 Randy Bimm, Derek Fusari</p>
-    </div>
-</div>
+        <!--Navbar-->
+        <div data-role="panel" class="navbar" id="navbar" data-position-fixed="true" data-display="overlay"
+             data-theme="b">
+            <h1>Menu</h1>
+            <hr>
+            <ul data-role="listview">
+                <li data-icon="home"><a href="#pageHome">HOME</a></li>
+                <li data-icon="search"><a href="#pageReviewSearch">SEARCH </a></li>
+                <li data-icon="grid"><a href="#pageSaved">SAVED</a></li>
+                <li data-icon="gear"><a href="#pageSettings">SETTINGS</a></li>
+            </ul>
+            <img src="img/icon.png">
+            <div class="bottom-nav">
+                <hr>
+                <p>&copy; 2017 Randy Bimm, Derek Fusari</p>
+            </div>
+        </div>
 
-<!--Home Page-->
-<div id="pageHome" data-role="page">
-    <header data-position="fixed" data-role="header">
-        <h1>Final Project</h1>
-        <a href="#navbar" data-icon="bars" data-iconpos="notext" data-ajax="false"></a>
-    </header>
-    <section data-role="content">
-        <h1>Home</h1>
-        <p>Content!</p>
-    </section>
-</div>
+        <!--Home Page-->
+        <div id="pageHome" data-role="page">
+            <header data-position="fixed" data-role="header">
+                <h1>Final Project</h1>
+            </header>
+            <section data-role="content">
+                <div id="home-icon-wrapper">
+                    <a href="#pageReviewSearch">
+                        <div class="home-icon">
+                            <img src="img/icon.png">
+                            <p>Search</p>
+                        </div>
+                    </a>
+                    <a href="#pageSaved">
+                        <div class="home-icon">
+                            <img src="img/icon.png">
+                            <p>Saved</p>
+                        </div>
+                    </a>
+                    <a href="#pageSettings">
+                        <div class="home-icon">
+                            <img src="img/icon.png">
+                            <p>Settings</p>
+                        </div>
+                    </a>
+                <div id="home-text-wrapper">
+                    <h1>Something</h1>
+                    <p>Something else, but smaller</p>
+                </div>
+            </section>
+        </div>
 
-</body>
+    </body>
 
 </html>
