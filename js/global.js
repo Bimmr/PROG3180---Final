@@ -17,13 +17,15 @@ function init() {
     $.get("./reviews.html", function (data) {
         $("body").append(data);
     });
+
+    //Setup panel navbar
     $('#navbar').enhanceWithin().panel();
 
+    //Listen for swipe to open nav
+    $("body").on("swiperight", function () {
+        $("#navbar").panel("open");
 
-        $("body").on( "swiperight", function( e ) {
-                    $( "#navbar" ).panel( "open" );
-
-        });
+    });
 }
 
 /**
