@@ -34,6 +34,22 @@ var Books = {
 
     },
     /**
+     * Select a specific record from the database
+     * @param field
+     * @param value
+     * @param sCallback
+     * @param fCallback
+     */
+    selectByField: function (field, value, sCallback, fCallback) {
+        db.transaction(function (tx) {
+            var query = "SELECT * FROM Books WHERE ?=?;";
+            var options = [field,value];
+
+            tx.executeSql(query, options, sCallback, fCallback);
+        }, errorHandler, successfulTransaction);
+
+    },
+    /**
      * Update a specific record into the database
      * @param options
      * @param sCallback
@@ -159,7 +175,7 @@ var Reviews = {
             errorHandler, successfulTransaction);
     }
 }
-var Reviews = {
+var SavedBooks = {
     /**
      * Insert into the database
      * @param options
@@ -168,7 +184,7 @@ var Reviews = {
      */
     insert: function (options, sCallback, fCallback) {
         db.transaction(function (tx) {
-                var query = "INSERT INTO Reviews VALUES (" +
+                var query = "INSERT INTO SavedBooks VALUES (" +
                     "NULL,?,?" +
                     ");";
                 tx.executeSql(query, options, sCallback, fCallback);
@@ -184,8 +200,24 @@ var Reviews = {
      */
     select: function (id, sCallback, fCallback) {
         db.transaction(function (tx) {
-            var query = "SELECT * FROM Reviews WHERE id=?;";
+            var query = "SELECT * FROM SavedBooks WHERE id=?;";
             var options = [id];
+
+            tx.executeSql(query, options, sCallback, fCallback);
+        }, errorHandler, successfulTransaction);
+
+    },
+    /**
+     * Select a specific record from the database
+     * @param field
+     * @param value
+     * @param sCallback
+     * @param fCallback
+     */
+    selectByField: function (field, value, sCallback, fCallback) {
+        db.transaction(function (tx) {
+            var query = "SELECT * FROM SavedBooks WHERE ?=?;";
+            var options = [field,value];
 
             tx.executeSql(query, options, sCallback, fCallback);
         }, errorHandler, successfulTransaction);
@@ -199,7 +231,7 @@ var Reviews = {
      */
     update: function (options, sCallback, fCallback) {
         db.transaction(function (tx) {
-            var query = "UPDATE Reviews SET" +
+            var query = "UPDATE SavedBooks SET" +
                 "savedURI=?," +
                 "savedEmail=?" +
                 "WHERE id=?;";
