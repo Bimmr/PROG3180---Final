@@ -20,20 +20,24 @@ textarea.error {
     border: 1px red solid;
 }
 
-#navbar img{
+#navbar img {
     position: relative;
     top: 40px;
-    margin: 0 auto;
-    width:100%;
+    margin: auto auto;
+    width: 200px;
+    display: block;
+    vertical-align: middle;
 }
-#navbar .bottom-nav{
+
+#navbar .bottom-nav {
     position: absolute;
-    display:table;
+    display: table;
     bottom: 0px;
     width: 100%;
     left: 0;
 }
-#navbar .bottom-nav p{
+
+#navbar .bottom-nav p {
     font-size: .8em;
     position: relative;
     text-align: center;
