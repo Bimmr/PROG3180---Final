@@ -49,6 +49,7 @@ textarea.error {
     align-items: center;
     justify-content: center;
     margin-top: 10px;
+    height: 75%;
 }
 #home-icon-wrapper a{
     color: black;
@@ -56,29 +57,37 @@ textarea.error {
 }
 
 .home-icon {
+    padding-top: 5px;
     width: 125px;
     height: 125px;
     margin: 10px;
 
-    box-shadow: 0 5px 15px #d4d4d4;
-    border: 1px solid #f4f4f4;
+    box-shadow: 0 2px 5px #d4d4d4;
+    border: 1px solid #dbdbdb;
     border-radius: 6px;
     display: flex;
+    background-color: #efefef;
 
     flex-flow: column wrap;
     align-items: center;
-
 }
-
-.home-icon img {
-    padding-top: 5px;
-    height: 50%;
+.home-icon:hover, .home-icon:active{
+    background-color: #dadada;
+}
+#pageHome{
+    height: 80%;
+    background: linear-gradient(to bottom, #f1f1f1, #FFF);
+}
+#home-wrapper{
+    height: 94%;
 }
 
 #home-text-wrapper {
-    margin-top: 25px;
+    position: absolute;
+    bottom: 40px;
     display: block;
     border-top: 1px solid #DDD;
     text-align: center;
     width: 100%;
+    background-color: #f1f1f1;
 }
