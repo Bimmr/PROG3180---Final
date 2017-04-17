@@ -37,7 +37,7 @@ function init() {
             });
 
 
-            //TODO: Move this to Facade (NOT YET TESTED)
+            //TODO: Move this to Facade
             $("#btnSearchBooks").on("click", function () {
                 if (doValidate_frmSearchBookReview()) {
                     var fields = [];
