@@ -32,10 +32,10 @@ function init() {
 
         //Review Pages
         {
-            console.log(0);
-            $("#frmSearchBook").on("keyup", function () {
+            $("#frmSearchBook, #datSearchDatePublished").on("change", function () {
                 doValidate_frmSearchBookReview();
             });
+
 
             //TODO: Move this to Facade (NOT YET TESTED)
             $("#btnSearchBooks").on("click", function () {
@@ -50,7 +50,7 @@ function init() {
                         fields.push("bookAuthor");
                         values.push($("#txtSearchAuthor").val());
                     }
-                    if ($("#txtSearchGenre").val().length !== 0) {
+                    if ($("#txtSearchGenre").val() !== "-1") {
                         fields.push("bookTypeId");
                         values.push($("#txtSearchGenre").val());
                     }
@@ -60,48 +60,54 @@ function init() {
                     }
 
                     function addNewReview(element) {
-                        element.append("<li data-icon='plus'><h1>Add new review</h1></li>");
+                        element.append("<li  data-icon='plus'><a href='#'><h1>Add A New Review</h1></a></li>");
                     }
 
                     //Get all books that match fields
                     Books.selectByField(fields, values,
                         function (tx, bookResults) {
-                            var element = $("#reviewList");
-                            $.mobile.changePage("#pageShowReviews");
+                            if (bookResults.rows.length > 0) {
+                                var element = $("#reviewList");
+                                $.mobile.changePage("#pageShowReviews");
 
-                            //Iterate through all books
-                            for (var b = 0; b < bookResults.rows.length; b++) {
+                                //Iterate through all books
+                                for (var bRow = 0; bRow < bookResults.rows.length; bRow++) {
 
-                                //Get all reviews that match the books
-                                Reviews.selectByField("bookId", bookResults.rows[b].bookId,
-                                    function (tx, reviewResults) {
+                                    var bookRow = bookResults.rows[bRow];
 
-                                        var bookRow = bookResults.rows[b];
+                                    //Get all reviews that match the books
+                                    Reviews.selectByField("bookId", bookRow.bookId,
+                                        function (tx, reviewResults) {
 
-                                        //Iterate through all review
-                                        for (var r = 0; r < reviewResults.rows.length; r++) {
-                                            var reviewRow = reviewResults.rows[r];
 
-                                            var code = "";
-                                            code += "<li data-icon='none'>";
-                                            code += "<h1>" + bookRow.bookName + "</h1>";
-                                            code += "<hr>";
-                                            code += "<h2>" + reviewRow.reviewTitle + "</h2>";
-                                            code += "<hr>";
-                                            code += "<p>" + reviewRow.reviewText + "</p>";
-                                            code += "</li>";
-                                            element.append(code);
-                                        }
-                                        addNewReview(element);
-                                    },
-                                    addNewReview(element));
+                                            var code = "<li data-role='list-divider'> <h1>" + bookRow.bookName + "</h1></li>";
 
+                                            //Iterate through all review
+                                            for (var revRow = 0; revRow < reviewResults.rows.length; revRow++) {
+                                                var reviewRow = reviewResults.rows[revRow];
+                                                code += "<li data-icon='none'>";
+                                                code += "<p class='ui-li-aside'>" + reviewRow.reviewDate + "</p>";
+                                                code += "<h3>" + reviewRow.reviewTitle + "</h3>";
+                                                code += "<p>" + reviewRow.reviewText + "</p>";
+                                                code += "<p>" + reviewRow.reviewName + " - " + reviewRow.reviewEmail + "</p>";
+                                                code += "</li>";
+                                                element.append(code);
+                                                code = "";
+                                            }
+                                            addNewReview(element);
+                                            element.listview("refresh");
+                                        },
+                                        function () {
+                                            addNewReview(element)
+                                            element.listview("refresh");
+                                        });
+                                }
+
+                            } else {
+                                $.mobile.changePage("#pageReviewSearch");
+                                alert("No books were found with those details");
                             }
-                        },
-                        function () {
-                            $.mobile.changePage("#pageReviewSearch");
-                            alert("No books were found with those details");
-                        });
+                        }, errorHandler)
                 }
             });
         }
