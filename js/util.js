@@ -26,20 +26,20 @@ function doValidate_frmSearchBookReview() {
     var form = $("#frmSearchBook");
     form.validate({
         rules: {
-            txtTitle: {
+            txtSearchName: {
                 lengthCheck: true,
                 maxlength: 25
             },
-            txtAuthor: {
+            txtSearchAuthor: {
                 lengthCheck: true,
                 maxlegnth: 25
             },
             messages: {
-                txtTitle: {
+                txtSearchTitle: {
                     lengthCheck: "Please enter a title with more than 2 characters.",
                     maxlength: "Book title cannot be more than 25 characters"
                 },
-                txtAuthor: {
+                txtSearchAuthor: {
                     lengthCheck: "Please enter an Author name with more than 2 characters.",
                     maxlength: "Author name cannot be more than 25 characters"
                 }

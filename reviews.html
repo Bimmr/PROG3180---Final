@@ -14,26 +14,26 @@ Date:   4/8/17
         <h1>Search for a book:</h1>
         <form id="frmSearchBook">
             <div data-role="fieldcontain">
-                <label for="txtTitle">Book Title:</label>
-                <input type="text" id="txtTitle" name="txtTitle" data-clear-btn="true">
+                <label for="txtSearchName">Book Title:</label>
+                <input type="text" id="txtSearchName" name="txtSearchName" data-clear-btn="true">
             </div>
 
             <div data-role="fieldcontain">
-                <label for="txtAuthor">Author: </label>
-                <input type="text" id="txtAuthor" name="txtAuthor" data-clear-btn="true">
+                <label for="txtSearchAuthor">Author: </label>
+                <input type="text" id="txtSearchAuthor" name="txtSearchAuthor" data-clear-btn="true">
             </div>
 
             <div data-role="fieldcontain">
-                <label for="txtGenre">Genre: </label>
-                <input type="text" id="txtGenre" name="txtGenre" data-clear-btn="true">
+                <label for="txtSearchGenre">Genre: </label>
+                <input type="text" id="txtSearchGenre" name="txtSearchGenre" data-clear-btn="true">
             </div>
 
             <div data-role="fieldcontain">
-                <label for="datDatePublished">Publish Date:</label>
-                <input type="date" id="datDatePublished" name="datDatePublished" data-clear-btn="true">
+                <label for="datSearchDatePublished">Publish Date:</label>
+                <input type="date" id="datSearchDatePublished" name="datSearchDatePublished" data-clear-btn="true">
             </div>
 
-            <input type="button" data-role="button" id="btnSearchReviews" value="Search"></input>
+            <input type="button" data-role="button" id="btnSearchBooks" value="Search">
             <!--Goto pagesShowReviews-->
 
         </form>
@@ -48,6 +48,9 @@ Date:   4/8/17
     </header>
     <section data-role="content">
         <h1>Show Reviews!</h1>
+            <ul id="reviewList" data-role="listview">
+
+            </ul>
 
         <-- Add All reviews as list
         |--------------------------------------------------|
