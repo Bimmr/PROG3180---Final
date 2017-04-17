@@ -146,7 +146,7 @@ var Reviews = {
      * @param sCallback
      * @param fCallback
      */
-    selectByField: function (field, value, sCallback, fCallback) {
+    selectByField: function (fields, values, sCallback, fCallback) {
         db.transaction(function (tx) {
 
             var query = "SELECT * FROM Reviews WHERE ?=?;";
