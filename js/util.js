@@ -2,43 +2,52 @@
  * Created by Randy, Derek on 04/8/17.
  */
 
-function doValidate_frmSearchBook() {
+jQuery.validator.addMethod("lengthCheck",
+    function (value, element) {
+
+        var valid = true;
+
+        if (value != null && value.length <= 2)
+            valid = false
+
+        return valid;
+    },
+    "Please enter a title with more than 2 characters."
+);
+jQuery.validator.addMethod("emailcheck",
+    function (value, element) {
+        var regex = /^.+@/;
+        return this.optional(element) || regex.test(value);
+    },
+    "Please enter a valid email address."
+);
+
+function doValidate_frmSearchBookReview() {
     var form = $("#frmSearchBook");
     form.validate({
-            rules: {
+        rules: {
+            txtTitle: {
+                lengthCheck: true,
+                maxlength: 25
+            },
+            txtAuthor: {
+                lengthCheck: true,
+                maxlegnth: 25
+            },
+            messages: {
                 txtTitle: {
-                    lengthCheck: true,
-                    maxlength: 25
+                    lengthCheck: "Please enter a title with more than 2 characters.",
+                    maxlength: "Book title cannot be more than 25 characters"
                 },
                 txtAuthor: {
-                    lengthCheck: true,
-                    maxlegnth: 25
-                },
-                messages: {
-                    txtTitle: {
-                        lengthCheck: "Please enter a title with more than 2 characters.",
-                        maxlength: "Book title cannot be more than 25 characters"
-                    },
-                    txtAuthor: {
-                        lengthCheck: "Please enter an Author name with more than 2 characters.",
-                        maxlength: "Author name cannot be more than 25 characters"
-                    }
+                    lengthCheck: "Please enter an Author name with more than 2 characters.",
+                    maxlength: "Author name cannot be more than 25 characters"
                 }
             }
-        },
+        }
+    });
 
-        jQuery.validator.addMethod("lengthCheck",
-            function (value, element) {
-
-                var valid = true;
-
-                if (value != null && value.length <= 2) {
-                    valid = false
-                }
-                return valid;
-            },
-            "Please enter a title with more than 2 characters."
-        ));
+    return form.valid();
 }
 
 function doValidate_frmWriteReview() {
@@ -85,14 +94,9 @@ function doValidate_frmWriteReview() {
                     }
                 }
             }
-        },
-        jQuery.validator.addMethod("emailcheck",
-            function (value, element) {
-                var regex = /^.+@/;
-                return this.optional(element) || regex.test(value);
-            },
-            "Please enter a valid email address."
-        ));
+        });
+    return form.valid();
+
 }
 
 
