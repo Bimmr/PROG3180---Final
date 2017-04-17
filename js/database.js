@@ -23,22 +23,21 @@ var DB = {
 
         //Create Book Type
         db.transaction(function (tx) {
-            var query = "CREATE TABLE IF NOT EXISTS BookTypes (" +
+            var query = "CREATE TABLE BookTypes (" +
                 "typeId     INTEGER      NOT NULL       PRIMARY KEY     AUTOINCREMENT," +
                 "typeName   VARCHAR(25)  NOT NULL" +
                 ");";
 
             tx.executeSql(query, [], function (tx, result) {
                 console.info("Success: Type Table created");
-
                 //Add Default Types
+
                 db.transaction(function (tx) {
                     var query = "INSERT INTO BookTypes (typeName) VALUES " +
-                        "(?)," +
-                        "(?);";
-                    var options = ['Fiction', 'Non-Fiction'];
+                        "('Fiction')," +
+                        "('Non-Fiction');";
 
-                    tx.executeSql(query, options, function (tx, result) {
+                    tx.executeSql(query, [], function (tx, result) {
                         console.info("Success: Default Types Added");
                     }, errorHandler);
                 }, errorHandler, successfulTransaction);
@@ -58,6 +57,7 @@ var DB = {
 
             tx.executeSql(query, [], function (tx, result) {
                 console.info("Success: Book Table created");
+
             }, errorHandler);
         }, errorHandler, successfulTransaction);
 
@@ -103,4 +103,34 @@ function errorHandler(tx, error) {
 }
 function successfulTransaction() {
     console.info("Success: Transaction is successful");
+}
+
+/**
+ * Load app in chrome, open console and type "addDataToDatabase();"
+ */
+function addDataToDatabase(){
+    //Add Default Types
+    db.transaction(function (tx) {
+        var query = "INSERT INTO Books VALUES " +
+            "(NULL, 'Book1', 'Author1', '2/2/2015', 1)," +
+            "(NULL, 'Book2', 'Author1', '2/2/2015', 2)," +
+            "(NULL, 'Book3', 'Author2', '2/2/2015', 1);";
+
+        tx.executeSql(query, [], function (tx, result) {
+            console.info("Success: Default Types Added");
+        }, errorHandler);
+    }, errorHandler, successfulTransaction);
+
+    db.transaction(function (tx) {
+        var query = "INSERT INTO Reviews VALUES " +
+            "(NULL, 'PersonA', 'PersonA@Email.com', '2/2/2017', 'Review Title', 'This is the review text', 0, 1)," +
+            "(NULL, 'PersonB', 'PersonB@Email.com', '2/2/2017', 'ReviewB Title', 'This is the review B text', 2, 1)," +
+            "(NULL, 'PersonA', 'PersonA@Email.com', '2/2/2017', 'ReviewC Title', 'This is the review C text', 5, 2);";
+
+        tx.executeSql(query, [], function (tx, result) {
+            console.info("Success: Default Types Added");
+        }, errorHandler);
+    }, errorHandler, successfulTransaction);
+
+
 }

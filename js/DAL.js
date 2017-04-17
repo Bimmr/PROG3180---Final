@@ -42,16 +42,15 @@ var Books = {
      */
     selectByField: function (fields, values, sCallback, fCallback) {
         db.transaction(function (tx) {
-            var query = "SELECT * FROM Books WHERE ?=?;";
-            var options = [fields,values];
-            if(fields.constructor == Array){
-                query = "SELECT * FROM BOOKS WHERE";
+            var query = "SELECT * FROM Books WHERE " + fields + "=?;";
+            var options = [values];
+            if (fields.constructor === Array) {
+                query = "SELECT * FROM Books WHERE ";
                 options = [];
-                for(var i = 0; i < fields.length; i++){
-                    if(i != 0)
-                        query +" AND ";
-                    query += "?=?";
-                    options.push(fields[i]);
+                for (var i = 0; i < fields.length; i++) {
+                    if (i > 0)
+                        query += " AND ";
+                    query += fields[i] + "=?";
                     options.push(values[i]);
                 }
                 query += ";";
@@ -149,21 +148,19 @@ var Reviews = {
     selectByField: function (fields, values, sCallback, fCallback) {
         db.transaction(function (tx) {
 
-            var query = "SELECT * FROM Reviews WHERE ?=?;";
-            var options = [fields,values];
-            if(fields.constructor == Array){
-                query = "SELECT * FROM Reviews WHERE";
+            var query = "SELECT * FROM Reviews WHERE " + fields + "=?;";
+            var options = [values];
+            if (fields.constructor == Array) {
+                query = "SELECT * FROM Reviews WHERE ";
                 options = [];
-                for(var i = 0; i < fields.length; i++){
-                    if(i != 0)
-                        query +" AND ";
-                    query += "?=?";
-                    options.push(fields[i]);
+                for (var i = 0; i < fields.length; i++) {
+                    if (i > 0)
+                        query += " AND ";
+                    query += fields[i] + "=?";
                     options.push(values[i]);
                 }
                 query += ";";
             }
-
             tx.executeSql(query, options, sCallback, fCallback);
         }, errorHandler, successfulTransaction);
     },
@@ -258,13 +255,13 @@ var SavedBooks = {
         db.transaction(function (tx) {
 
             var query = "SELECT * FROM SavedBooks WHERE ?=?;";
-            var options = [fields,values];
-            if(fields.constructor == Array){
+            var options = [fields, values];
+            if (fields.constructor == Array) {
                 query = "SELECT * FROM SavedBooks WHERE";
                 options = [];
-                for(var i = 0; i < fields.length; i++){
-                    if(i != 0)
-                        query +" AND ";
+                for (var i = 0; i < fields.length; i++) {
+                    if (i != 0)
+                        query + " AND ";
                     query += "?=?";
                     options.push(fields[i]);
                     options.push(values[i]);
