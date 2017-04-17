@@ -27,7 +27,10 @@ Date:   4/8/17
                 <label for="txtSearchGenre">Genre: </label>
                 <select id="txtSearchGenre" name="txtSearchGenre">
 
-                    <option value="1">Nothing</option>
+                    <!-- TODO: Maybe add radio button to enable/disable genre filter-->
+
+                    <option value="-1">Do not use genre</option>
+
                     <!--TODO: Auto-populate this -->
 
                 </select>
@@ -52,21 +55,7 @@ Date:   4/8/17
         <a href="#navbar"><i class="fa fa-bars fa-x2" aria-hidden="true"></i></a>
     </header>
     <section data-role="content">
-        <h1>Show Reviews!</h1>
-            <ul id="reviewList" data-role="listview">
-
-            </ul>
-
-        <!-- Add All reviews as list
-        |--------------------------------------------------|
-        |Review Name - Review Date |
-        |Review Text Like Review |
-        | |
-        |--------------------------------------------------|
-        | Add New Review (When clicked, open pageAddReview)|
-        |--------------------------------------------------|
-        -->
-
+        <ul id="reviewList" data-role="listview"></ul>
     </section>
 </div>
 
