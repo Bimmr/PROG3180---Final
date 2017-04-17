@@ -40,10 +40,22 @@ var Books = {
      * @param sCallback
      * @param fCallback
      */
-    selectByField: function (field, value, sCallback, fCallback) {
+    selectByField: function (fields, values, sCallback, fCallback) {
         db.transaction(function (tx) {
             var query = "SELECT * FROM Books WHERE ?=?;";
-            var options = [field,value];
+            var options = [fields,values];
+            if(fields.constructor == Array){
+                query = "SELECT * FROM BOOKS WHERE";
+                options = [];
+                for(var i = 0; i < fields.length; i++){
+                    if(i != 0)
+                        query +" AND ";
+                    query += "?=?";
+                    options.push(fields[i]);
+                    options.push(values[i]);
+                }
+                query += ";";
+            }
 
             tx.executeSql(query, options, sCallback, fCallback);
         }, errorHandler, successfulTransaction);
@@ -126,6 +138,34 @@ var Reviews = {
             tx.executeSql(query, options, sCallback, fCallback);
         }, errorHandler, successfulTransaction);
 
+    },
+    /**
+     * Select a specific record from the database
+     * @param field
+     * @param value
+     * @param sCallback
+     * @param fCallback
+     */
+    selectByField: function (field, value, sCallback, fCallback) {
+        db.transaction(function (tx) {
+
+            var query = "SELECT * FROM Reviews WHERE ?=?;";
+            var options = [fields,values];
+            if(fields.constructor == Array){
+                query = "SELECT * FROM Reviews WHERE";
+                options = [];
+                for(var i = 0; i < fields.length; i++){
+                    if(i != 0)
+                        query +" AND ";
+                    query += "?=?";
+                    options.push(fields[i]);
+                    options.push(values[i]);
+                }
+                query += ";";
+            }
+
+            tx.executeSql(query, options, sCallback, fCallback);
+        }, errorHandler, successfulTransaction);
     },
     /**
      * Update a specific record into the database
@@ -216,12 +256,24 @@ var SavedBooks = {
      */
     selectByField: function (field, value, sCallback, fCallback) {
         db.transaction(function (tx) {
+
             var query = "SELECT * FROM SavedBooks WHERE ?=?;";
-            var options = [field,value];
+            var options = [fields,values];
+            if(fields.constructor == Array){
+                query = "SELECT * FROM SavedBooks WHERE";
+                options = [];
+                for(var i = 0; i < fields.length; i++){
+                    if(i != 0)
+                        query +" AND ";
+                    query += "?=?";
+                    options.push(fields[i]);
+                    options.push(values[i]);
+                }
+                query += ";";
+            }
 
             tx.executeSql(query, options, sCallback, fCallback);
         }, errorHandler, successfulTransaction);
-
     },
     /**
      * Update a specific record into the database
