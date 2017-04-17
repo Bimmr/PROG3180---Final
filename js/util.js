@@ -4,12 +4,9 @@
 
 jQuery.validator.addMethod("lengthCheck",
     function (value, element) {
-
         var valid = true;
-
         if (value !== null && value !== "" && value.length <= 2)
             valid = false
-
         return valid;
     },
     "Please enter a value with more than 2 characters."
@@ -28,14 +25,39 @@ function doValidate_frmSearchBookReview() {
         rules: {
             txtSearchName: {
                 required: function () {
-                    return $("#txtSearchAuthor").val().length === 0;
+                    var needValue = true;
+                    if ($("#txtSearchAuthor").val().length !== 0
+                        || $("#txtSearchGenre").val() !== "-1"
+                        || $("#datSearchDatePublished").val().length !== 0)
+                        needValue = false;
+
+                    return needValue;
                 },
                 lengthCheck: true,
                 maxlength: 25
             },
             txtSearchAuthor: {
                 required: function () {
-                    return $("#txtSearchName").val().length === 0;
+                    var needValue = true;
+                    if ($("#txtSearchName").val().length !== 0
+                        || $("#txtSearchGenre").val() !== "-1"
+                        || $("#datSearchDatePublished").val().length !== 0)
+                        needValue = false;
+
+                    return needValue;
+                },
+                lengthCheck: true,
+                maxlength: 25
+            },
+            datSearchDatePublished: {
+                required: function () {
+                    var needValue = true;
+                    if ($("#txtSearchName").val().length !== 0
+                        || $("#txtSearchGenre").val() !== "-1"
+                        || $("#txtSearchAuthor").val().length !== 0)
+                        needValue = false;
+
+                    return needValue;
                 },
                 lengthCheck: true,
                 maxlength: 25
@@ -43,12 +65,12 @@ function doValidate_frmSearchBookReview() {
         },
         messages: {
             txtSearchName: {
-                required: "Fill in either the book title, or the author",
+                required: "Please Fill in one of the filters",
                 lengthCheck: "Please enter a title with more than 2 characters.",
                 maxlength: "Book title cannot be more than 25 characters"
             },
             txtSearchAuthor: {
-                required: "Fill in either the book title, or the author",
+                required: "Please Fill in one of the filters",
                 lengthCheck: "Please enter an Author name with more than 2 characters.",
                 maxlength: "Author name cannot be more than 25 characters"
             }
