@@ -108,7 +108,8 @@ function successfulTransaction() {
 /**
  * Load app in chrome, open console and type "addDataToDatabase();"
  */
-function addDataToDatabase(){
+function addDataToDatabase() {
+    alert("Data added to database");
     //Add Default Types
     db.transaction(function (tx) {
         var query = "INSERT INTO Books VALUES " +

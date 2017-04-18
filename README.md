@@ -4,7 +4,9 @@ Mobile Application Programming Final
 <h2>Temp Data</h2>
 Until data is hardcoded in, you can add temporary data via 
 opening the developer console in your internet browser, and running the function <pre>addDataToDataBase();</pre>
-
+<strong>OR</strong><br>
+<br>
+Click the Add Temp Data icon on the home page
 <h2>Temp SQL</h2>
 Upon running the function above, you will run the following queries
 <pre>INSERT INTO Books VALUES
