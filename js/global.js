@@ -59,15 +59,12 @@ function init() {
                         values.push($("#datSearchDatePublished").val());
                     }
 
-                    function addNewReview(element) {
-                        element.append("<li  data-icon='plus'><a href='#'><h1>Add A New Review</h1></a></li>");
-                    }
-
                     //Get all books that match fields
                     Books.selectByField(fields, values,
                         function (tx, bookResults) {
                             if (bookResults.rows.length > 0) {
                                 var element = $("#reviewList");
+                                element.html("");
                                 $.mobile.changePage("#pageShowReviews");
 
                                 //Iterate through all books
@@ -80,27 +77,32 @@ function init() {
                                         function (tx, reviewResults) {
 
 
-                                            var code = "<li data-role='list-divider'> <h1>" + bookRow.bookName + "</h1></li>";
+                                            //Manually set classes/etc because it doesn't work nicely when you have multiple listviews being added at the same time, to the same div
+                                            var code = "<ul data-role='listview' data-inset='true' class='ui-listview ui-listview-inset ui-corner-all ui-shadow'>";
+                                            code += "<li data-role='list-divider' role='heading' class='ui-li-divider ui-bar-inherit'> <h1>" + bookRow.bookName + " (" + bookRow.bookAuthor + ")" + "</h1></li>";
 
                                             //Iterate through all review
                                             for (var revRow = 0; revRow < reviewResults.rows.length; revRow++) {
                                                 var reviewRow = reviewResults.rows[revRow];
-                                                code += "<li data-icon='none'>";
+                                                code += "<li data-icon='none' class='ui-li-static ui-body-inherit'>";
                                                 code += "<p class='ui-li-aside'>" + reviewRow.reviewDate + "</p>";
                                                 code += "<h3>" + reviewRow.reviewTitle + "</h3>";
                                                 code += "<p>" + reviewRow.reviewText + "</p>";
                                                 code += "<p>" + reviewRow.reviewName + " - " + reviewRow.reviewEmail + "</p>";
                                                 code += "</li>";
-                                                element.append(code);
-                                                code = "";
                                             }
-                                            addNewReview(element);
-                                            element.listview("refresh");
-                                        },
-                                        function () {
-                                            addNewReview(element)
-                                            element.listview("refresh");
-                                        });
+                                            code += "<li data-icon='plus'><a href='#' class='ui-btn ui-btn-icon-right ui-icon-plus'><h1>Add A New Review</h1></a></li>";
+                                            code += "</ul>";
+                                            element.append(code);
+
+                                        }, function () {
+                                            var code = "<ul data-role='listview' data-inset='true' class='ui-listview ui-listview-inset ui-corner-all ui-shadow'>";
+                                            code += "<li data-role='list-divider' role='heading' class='ui-li-divider ui-bar-inherit'> <h1>" + bookRow.bookName + " (" + bookRow.bookAuthor + ")" + "</h1></li>";
+                                            code += "<li data-icon='plus'><a href='#' class='ui-btn ui-btn-icon-right ui-icon-plus'><h1>Add A New Review</h1></a></li>";
+                                            code += "</ul>";
+                                            element.append(code);
+                                        }
+                                    );
                                 }
 
                             } else {
