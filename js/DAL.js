@@ -35,8 +35,8 @@ var Books = {
     },
     /**
      * Select a specific record from the database
-     * @param field
-     * @param value
+     * @param fields
+     * @param values
      * @param sCallback
      * @param fCallback
      */
@@ -140,8 +140,8 @@ var Reviews = {
     },
     /**
      * Select a specific record from the database
-     * @param field
-     * @param value
+     * @param fields
+     * @param values
      * @param sCallback
      * @param fCallback
      */
@@ -246,24 +246,22 @@ var SavedBooks = {
     },
     /**
      * Select a specific record from the database
-     * @param field
-     * @param value
+     * @param fields
+     * @param values
      * @param sCallback
      * @param fCallback
      */
-    selectByField: function (field, value, sCallback, fCallback) {
+    selectByField: function (fields, values, sCallback, fCallback) {
         db.transaction(function (tx) {
-
-            var query = "SELECT * FROM SavedBooks WHERE ?=?;";
-            var options = [fields, values];
-            if (fields.constructor == Array) {
-                query = "SELECT * FROM SavedBooks WHERE";
+            var query = "SELECT * FROM SavedBooks WHERE " + fields + "=?;";
+            var options = [values];
+            if (fields.constructor === Array) {
+                query = "SELECT * FROM Books WHERE ";
                 options = [];
                 for (var i = 0; i < fields.length; i++) {
-                    if (i != 0)
-                        query + " AND ";
-                    query += "?=?";
-                    options.push(fields[i]);
+                    if (i > 0)
+                        query += " AND ";
+                    query += fields[i] + "=?";
                     options.push(values[i]);
                 }
                 query += ";";
@@ -271,6 +269,7 @@ var SavedBooks = {
 
             tx.executeSql(query, options, sCallback, fCallback);
         }, errorHandler, successfulTransaction);
+
     },
     /**
      * Update a specific record into the database
@@ -311,6 +310,36 @@ var SavedBooks = {
         db.transaction(function (tx) {
                 var query = "SELECT * FROM SavedBooks WHERE savedEmail=?;";
                 var options = [email];
+                tx.executeSql(query, options, sCallback, fCallback);
+            },
+            errorHandler, successfulTransaction);
+    }
+}
+var BookTypes = {
+    /**
+     * Select a specific record from the database
+     * @param id
+     * @param sCallback
+     * @param fCallback
+     */
+    select: function (id, sCallback, fCallback) {
+        db.transaction(function (tx) {
+            var query = "SELECT * FROM BookTypes WHERE id=?;";
+            var options = [id];
+
+            tx.executeSql(query, options, sCallback, fCallback);
+        }, errorHandler, successfulTransaction);
+
+    },
+    /**
+     * Select all records from the database
+     * @param sCallback
+     * @param fCallback
+     */
+    SelectAll: function (sCallback, fCallback) {
+        db.transaction(function (tx) {
+                var query = "SELECT * FROM BookTypes;";
+                var options = [];
                 tx.executeSql(query, options, sCallback, fCallback);
             },
             errorHandler, successfulTransaction);

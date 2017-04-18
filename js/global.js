@@ -18,6 +18,25 @@ function init() {
         $("body").append(data);
 
 
+        //TODO: Move this to facade
+        BookTypes.SelectAll(
+            function (tx, results) {
+                var code = "";
+
+                for (var i = 0; i < results.rows.length; i++) {
+                    code += "<option value='" + results.rows[i].typeId + "'>";
+                    code += results.rows[i].typeName;
+                    code += "</option>";
+                }
+                $("#txtSearchGenre").append(code);
+
+            },
+            function () {
+                alert("Something went wrong whilst loading book types. Please try again.");
+            }
+        )
+
+
         //Navbar
         {
             //Setup panel navbar
@@ -37,7 +56,7 @@ function init() {
             });
 
 
-            //TODO: Move this to Facade
+            //TODO: Move this to facade
             $("#btnSearchBooks").on("click", function () {
                 if (doValidate_frmSearchBookReview()) {
                     var fields = [];
