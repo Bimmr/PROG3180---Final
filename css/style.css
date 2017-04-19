@@ -13,11 +13,10 @@ label.error {
     color: #F00;
     font-weight: bold;
 }
-
 input.error,
 select.error,
 textarea.error {
-    border: 1px red solid;
+    border: 2px red solid;
 }
 
 #navbar img {
@@ -92,6 +91,10 @@ textarea.error {
     width: 100%;
     background-color: #f1f1f1;
 }
+#pageReviewSearch .ui-input-text{
+    padding-right: 0px !important;
+}
+
 #reviewList li p:last-of-type{
     font-style: italic;
 }

@@ -73,7 +73,17 @@ function doValidate_frmSearchBookReview() {
                 required: "Please Fill in one of the filters",
                 lengthCheck: "Please enter an Author name with more than 2 characters.",
                 maxlength: "Author name cannot be more than 25 characters"
+            },
+            datSearchDatePublished: {
+                required: "Please Fill in one of the filters"
             }
+        }, groups: {
+            inputGroup: "txtSearchName txtSearchAuthor datSearchDatePublished txtSearchGenre"
+        },
+        errorPlacement: function(error, element) {
+            error.insertAfter("#searchErrorText");
+
+            //$("#frmSearchBook .ui-select").addClass(".error");
         }
 
     });

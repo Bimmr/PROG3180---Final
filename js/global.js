@@ -53,7 +53,12 @@ function init() {
 
             //Review Pages
             {
+
+                //Update validator on anything changing
                 $("#frmSearchBook, #datSearchDatePublished").on("change", function () {
+                    doValidate_frmSearchBookReview();
+                });
+                $("#frmSearchBook input").on("keyup", function () {
                     doValidate_frmSearchBookReview();
                 });
 
