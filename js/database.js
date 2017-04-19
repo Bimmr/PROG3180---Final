@@ -93,6 +93,23 @@ var DB = {
         }, errorHandler, successfulTransaction);
 
 
+    },
+    dropTable: function (table) {
+        console.info("Drop Tables ...");
+        db.transaction(function (tx) {
+            var query = "DROP TABLE IF EXISTS "+table+";"
+
+            tx.executeSql(query, [], function (tx, result) {
+                console.info("Success: "+table +" Table dropped")
+            }, errorHandler);
+        }, errorHandler, successfulTransaction);
+    },
+
+    dropTables: function () {
+        DB.dropTable("Books");
+        DB.dropTable("BookTypes");
+        DB.dropTable("Reviews");
+        DB.dropTable("SavedBooks");
     }
 }
 
