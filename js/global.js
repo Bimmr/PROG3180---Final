@@ -38,7 +38,6 @@ function init() {
                 }
             )
 
-
             //Navbar
             {
                 //Setup panel navbar
@@ -49,6 +48,25 @@ function init() {
                     $("#navbar").panel("open");
 
                 });
+            }
+
+            //Home
+            {
+                if (localStorage.getItem("email") == null)
+                    $("#popupGetEmail").popup("open");
+
+                $("#btnGetEmail").on("click", function () {
+
+                    //TODO: Move validate to Facade
+                    if ($("#frmGetEmail").valid()) {
+                        var email = $("#getEmailEmail").val();
+                        localStorage.setItem("email", email);
+                        $("#txtSettingsEmail").val(email);
+                        $("#popupGetEmail").popup("close");
+
+                    }
+                    ;
+                })
             }
 
             //Review Pages
@@ -147,7 +165,7 @@ function init() {
             //Settings Pages
             {
 
-                $("#btnSettingsAbout").on("click", function(){
+                $("#btnSettingsAbout").on("click", function () {
                     $("#popupAbout").popup("open");
                 })
             }
