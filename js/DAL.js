@@ -42,20 +42,19 @@ var Books = {
      */
     selectByField: function (fields, values, sCallback, fCallback) {
         db.transaction(function (tx) {
-            var query = "SELECT * FROM Books WHERE " + fields + "=?;";
-            var options = [values];
+            var query = "SELECT * FROM Books WHERE " + fields + " LIKE ?;";
+            var options = ["%" + values + "%"];
             if (fields.constructor === Array) {
                 query = "SELECT * FROM Books WHERE ";
                 options = [];
                 for (var i = 0; i < fields.length; i++) {
                     if (i > 0)
                         query += " AND ";
-                    query += fields[i] + "=?";
-                    options.push(values[i]);
+                    query += fields[i] + " LIKE ?";
+                    options.push("%" + values[i] + "%");
                 }
                 query += ";";
             }
-
             tx.executeSql(query, options, sCallback, fCallback);
         }, errorHandler, successfulTransaction);
 
@@ -148,16 +147,16 @@ var Reviews = {
     selectByField: function (fields, values, sCallback, fCallback) {
         db.transaction(function (tx) {
 
-            var query = "SELECT * FROM Reviews WHERE " + fields + "=?;";
-            var options = [values];
+            var query = "SELECT * FROM Reviews WHERE " + fields + " LIKE ?;";
+            var options = ["%" + values + "%"];
             if (fields.constructor == Array) {
                 query = "SELECT * FROM Reviews WHERE ";
                 options = [];
                 for (var i = 0; i < fields.length; i++) {
                     if (i > 0)
                         query += " AND ";
-                    query += fields[i] + "=?";
-                    options.push(values[i]);
+                    query += fields[i] + " LIKE ?";
+                    options.push("%" + values[i] + "%");
                 }
                 query += ";";
             }
