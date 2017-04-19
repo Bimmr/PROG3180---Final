@@ -50,11 +50,11 @@ textarea.error {
     justify-content: center;
     margin-top: 10px;
     height: 75%;
+    overflow-y: scroll;
 }
 #home-icon-wrapper a{
     color: black;
     text-decoration: none;
-    overflow-y: scroll;
 }
 
 .home-icon {
