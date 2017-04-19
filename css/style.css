@@ -76,7 +76,7 @@ textarea.error {
 }
 #pageHome{
     height: 80%;
-    background: linear-gradient(to bottom, #f1f1f1, #FFF);
+    background: linear-gradient(to bottom, #cecece, #FFF);
 }
 #home-wrapper{
     height: 94%;
@@ -93,4 +93,9 @@ textarea.error {
 }
 #reviewList li p:last-of-type{
     font-style: italic;
+}
+#popupAbout section{
+    /*padding-left: 25px;*/
+    /*padding-right: 75px;*/
+    padding-bottom: 50px;
 }

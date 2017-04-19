@@ -65,7 +65,6 @@ var DB = {
         db.transaction(function (tx) {
             var query = "CREATE TABLE IF NOT EXISTS Reviews (" +
                 "reviewId             INTEGER       NOT NULL       PRIMARY KEY     AUTOINCREMENT," +
-                "reviewName           VARCHAR(25)   NOT NULL," +
                 "reviewEmail          VARCHAR(25)   NOT NULL," +
                 "reviewDate           DATETIME      NOT NULL," +
                 "reviewTitle          VARCHAR(25)   NOT NULL," +
@@ -124,9 +123,9 @@ function addDataToDatabase() {
 
     db.transaction(function (tx) {
         var query = "INSERT INTO Reviews VALUES " +
-            "(NULL, 'PersonA', 'PersonA@Email.com', '2/2/2017', 'Review Title', 'This is the review text', 0, 1)," +
-            "(NULL, 'PersonB', 'PersonB@Email.com', '2/2/2017', 'ReviewB Title', 'This is the review B text', 2, 1)," +
-            "(NULL, 'PersonA', 'PersonA@Email.com', '2/2/2017', 'ReviewC Title', 'This is the review C text', 5, 2);";
+            "(NULL, 'PersonA@Email.com', '2/2/2017', 'Review Title', 'This is the review text', 0, 1)," +
+            "(NULL, 'PersonB@Email.com', '2/2/2017', 'ReviewB Title', 'This is the review B text', 2, 1)," +
+            "(NULL, 'PersonA@Email.com', '2/2/2017', 'ReviewC Title', 'This is the review C text', 5, 2);";
 
         tx.executeSql(query, [], function (tx, result) {
             console.info("Success: Default Types Added");

@@ -1,0 +1,50 @@
+<!--
+Mobile Application Programming
+Final Project
+Author: Randy Bimm
+Date:   4/19/17
+-->
+<div id="pageSettings" data-role="page">
+    <header data-position="fixed" data-role="header">
+        <h1>BOOK WORMS</h1>
+        <a href="#navbar"><i class="fa fa-bars fa-x2" aria-hidden="true"></i></a>
+    </header>
+
+    <section data-role="content">
+        <h1>Settings</h1>
+        <form id="frmSearchBook">
+            <div data-role="fieldcontain">
+                <label for="txtSettingsEmail">Email:</label>
+                <input type="email" id="txtSettingsEmail" name="txtSettingsEmail" data-clear-btn="true">
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="txtSearchAuthor">Author: </label>
+                <input type="text" id="txtSearchAuthor" name="txtSearchAuthor" data-clear-btn="true">
+            </div>
+
+            <input type="button" data-role="button" id="btnSettingsSave" value="Search">
+            <input type="button" data-role="button" id="btnSettingsAbout" value="About">
+
+
+            <!--About Popup-->
+            <div id="popupAbout" data-role="popup">
+                <header data-role="header">
+                    <h1>Created by:</h1>
+                    <a href="#" data-rel="back"><i class="fa fa-close" aria-hidden="true"></i></a>
+                </header>
+                <section data-role="content">
+                    <br>
+                    <h3>Randy Bimm</h3>
+                    <p>Rbimm5674@Conestogac.on.ca</p>
+                    <hr>
+                    <h3>Derek Fusari</h3>
+                    <p>Dfusari5799@Conestogac.on.ca</p>
+
+                    </table>
+                </section>
+            </div>
+        </form>
+    </section>
+</div>
+
