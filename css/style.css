@@ -13,6 +13,7 @@ label.error {
     color: #F00;
     font-weight: bold;
 }
+
 input.error,
 select.error,
 textarea.error {
@@ -51,7 +52,8 @@ textarea.error {
     height: 80%;
     overflow-y: scroll;
 }
-#home-icon-wrapper a{
+
+#home-icon-wrapper a {
     color: black;
     text-decoration: none;
 }
@@ -71,14 +73,17 @@ textarea.error {
     flex-flow: column wrap;
     align-items: center;
 }
-.home-icon:hover, .home-icon:active{
+
+.home-icon:hover, .home-icon:active {
     background-color: #dadada;
 }
-#pageHome{
+
+#pageHome {
     height: 80%;
     background: linear-gradient(to bottom, #e6e6e6, #FFF);
 }
-#home-wrapper{
+
+#home-wrapper {
     height: 94%;
 }
 
@@ -91,15 +96,23 @@ textarea.error {
     width: 100%;
     background-color: #f1f1f1;
 }
-#pageReviewSearch .ui-input-text{
+
+#pageReviewSearch .ui-input-text {
     padding-right: 0px !important;
 }
 
-#reviewList li p:last-of-type{
+#reviewList li p:last-of-type {
     font-style: italic;
 }
-#popupAbout section{
-    /*padding-left: 25px;*/
-    /*padding-right: 75px;*/
+
+#popupAbout section {
     padding-bottom: 50px;
+}
+
+header i {
+    color: dimgray;
+    padding-left: 5px;
+}
+header i:focus, header i:active {
+    color: white;
 }
