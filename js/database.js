@@ -69,6 +69,7 @@ var DB = {
                 "reviewDate           DATETIME      NOT NULL," +
                 "reviewTitle          VARCHAR(25)   NOT NULL," +
                 "reviewText           VARCHAR(100)  NOT NULL," +
+                "reviewRating         INTEGER       NOT NULL," +
                 "reviewVotes          INTEGER       NOT NULL," +
                 "bookId               INTEGER       NOT NULL," +
                 "FOREIGN KEY(bookId) REFERENCES Book(bookId)" +
@@ -140,23 +141,23 @@ function addDataToDatabase() {
             "(NULL, 'Wuthering Heights', 'Emile Bronte', '3/12/1847', 1);";
 
         tx.executeSql(query, [], function (tx, result) {
-            console.info("Success: Default Types Added");
+            console.info("Success: Default Books Added");
         }, errorHandler);
     }, errorHandler, successfulTransaction);
 
     db.transaction(function (tx) {
         var query = "INSERT INTO Reviews VALUES " +
-            "(NULL, 'jsmith@yahoo.ca', '3/6/2016', 'Classic!', 'I loved this novel! It's such a good read, "+
-                "definitely worth looking in to.', 5, 1)," +
+            "(NULL, 'jsmith@yahoo.ca', '3/6/2016', 'Classic!', 'I loved this novel! Its such a good read, "+
+                "definitely worth looking in to.', 5, 5, 1)," +
             "(NULL, 'edouglas@gmail.com', '2/12/2017', 'It was confusing', 'I found the story difficult "+
-                "to follow. Too many different plot points', 2, 3)," +
+                "to follow. Too many different plot points', 2, 2, 3)," +
             "(NULL, 'dfusari@gmail.com', '8/18/2017', 'Okay.', 'Not very interesting."+
-                "Couldn't finish it because I got too bored', 0, 4)," +
-            "(NULL, 'rbimmA@gmail.com', '12/25/2018', 'Excellent read', 'A classic book to curl up and read over christmas holidays', 5, 1);";
+                "Couldntt finish it because I got too bored', 2,  0, 4)," +
+            "(NULL, 'rbimmA@gmail.com', '12/25/2018', 'Excellent read', 'A classic book to curl up and read over christmas holidays', 4, 5, 1);";
 
 
         tx.executeSql(query, [], function (tx, result) {
-            console.info("Success: Default Types Added");
+            console.info("Success: Default Reviews Added");
         }, errorHandler);
     }, errorHandler, successfulTransaction);
 

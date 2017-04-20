@@ -25,7 +25,6 @@ function init() {
             $.mobile.selectmenu.prototype.options.nativeMenu = false;
 
 
-
             //TODO: Move this to facade
             //Add book types to select
             BookTypes.SelectAll(
@@ -153,6 +152,8 @@ function init() {
                                         code += "<p class='ui-li-aside'>" + reviewRow.reviewDate + "</p>";
                                         code += "<h3>" + reviewRow.reviewTitle + "</h3>";
                                         code += "<p>" + reviewRow.reviewText + "</p>";
+                                        for (var rate = 1; rate <= 5; rate++)
+                                            code += "<i class='fa fa-star" + (rate <= reviewRow.reviewRating ? "" : "-o") + "' aria-hidden='true'></i>";
                                         code += "<p>" + reviewRow.reviewEmail + "</p>";
                                         code += "</li>";
                                     }
