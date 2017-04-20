@@ -129,9 +129,15 @@ function addDataToDatabase() {
     //Add Default Types
     db.transaction(function (tx) {
         var query = "INSERT INTO Books VALUES " +
-            "(NULL, 'Book1', 'Author1', '2/2/2015', 1)," +
-            "(NULL, 'Book2', 'Author1', '2/2/2015', 2)," +
-            "(NULL, 'Book3', 'Author2', '2/2/2015', 1);";
+            "(NULL, 'The Great Gatsby', 'F. Scott Fitzgerald', '5/22/1925', 1)," +
+            "(NULL, 'To Kill a Mocking Bird', 'Harper Lee', '6/8/1960', 1)," +
+            "(NULL, 'Lord of the Flies', 'William Godling', '3/1/1954', 1)," +
+            "(NULL, 'Persuasion', 'Jane Austen', '12/4/1890', 1)," +
+            "(NULL, 'Night', 'Elie Wiesel', '1/1/1958', 2)," +
+            "(NULL, 'Yes Please', 'Amy Poehler', '4/1/2014', 2)," +
+            "(NULL, 'The God Delusion', 'Richard Dawkins', '11/4/2006', 2)," +
+            "(NULL, 'Me Talk Pretty One Day', 'David Sedaris', '7/25/2000', 2)," +
+            "(NULL, 'Wuthering Heights', 'Emile Bronte', '3/12/1847', 1);";
 
         tx.executeSql(query, [], function (tx, result) {
             console.info("Success: Default Types Added");
