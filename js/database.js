@@ -98,10 +98,10 @@ var DB = {
     dropTable: function (table) {
         console.info("Drop Tables ...");
         db.transaction(function (tx) {
-            var query = "DROP TABLE IF EXISTS "+table+";"
+            var query = "DROP TABLE IF EXISTS " + table + ";"
 
             tx.executeSql(query, [], function (tx, result) {
-                console.info("Success: "+table +" Table dropped")
+                console.info("Success: " + table + " Table dropped")
             }, errorHandler);
         }, errorHandler, successfulTransaction);
     },
@@ -147,12 +147,12 @@ function addDataToDatabase() {
 
     db.transaction(function (tx) {
         var query = "INSERT INTO Reviews VALUES " +
-            "(NULL, 'jsmith@yahoo.ca', '3/6/2016', 'Classic!', 'I loved this novel! Its such a good read, "+
-                "definitely worth looking in to.', 5, 5, 1)," +
-            "(NULL, 'edouglas@gmail.com', '2/12/2017', 'It was confusing', 'I found the story difficult "+
-                "to follow. Too many different plot points', 2, 2, 3)," +
-            "(NULL, 'dfusari@gmail.com', '8/18/2017', 'Okay.', 'Not very interesting."+
-                "Couldntt finish it because I got too bored', 2,  0, 4)," +
+            "(NULL, 'jsmith@yahoo.ca', '3/6/2016', 'Classic!', 'I loved this novel! Its such a good read, " +
+            "definitely worth looking in to.', 5, 5, 1)," +
+            "(NULL, 'edouglas@gmail.com', '2/12/2017', 'It was confusing', 'I found the story difficult " +
+            "to follow. Too many different plot points', 2, 2, 3)," +
+            "(NULL, 'dfusari@gmail.com', '8/18/2017', 'Okay.', 'Not very interesting." +
+            "Couldntt finish it because I got too bored', 2,  0, 4)," +
             "(NULL, 'rbimmA@gmail.com', '12/25/2018', 'Excellent read', 'A classic book to curl up and read over christmas holidays', 4, 5, 1);";
 
 

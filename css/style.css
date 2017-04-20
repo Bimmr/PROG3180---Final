@@ -113,6 +113,7 @@ header i {
     color: dimgray;
     padding-left: 5px;
 }
+
 header i:focus, header i:active {
     color: white;
 }
