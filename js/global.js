@@ -20,7 +20,14 @@ function init() {
         $.get("./settings.html", function (data) {
             $("body").append(data);
 
+
+            //Turn off native menus
+            $.mobile.selectmenu.prototype.options.nativeMenu = false;
+
+
+
             //TODO: Move this to facade
+            //Add book types to select
             BookTypes.SelectAll(
                 function (tx, results) {
                     var code = "";
@@ -36,7 +43,8 @@ function init() {
                 function () {
                     alert("Something went wrong whilst loading book types. Please try again.");
                 }
-            )
+            );
+
 
             //Navbar
             {
