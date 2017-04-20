@@ -54,19 +54,23 @@ function init() {
             {
                 if (localStorage.getItem("email") == null)
                     $("#popupGetEmail").popup("open");
+                else
+                    localStorage.setItem("email", $("#txtHomeEmail").val());
 
-                $("#btnGetEmail").on("click", function () {
+
+                $("#btnHomeEmail").on("click", function () {
 
                     //TODO: Move validate to Facade
                     if ($("#frmGetEmail").valid()) {
-                        var email = $("#getEmailEmail").val();
+
+                        var email = $("#txtHomeEmail").val();
                         localStorage.setItem("email", email);
                         $("#txtSettingsEmail").val(email);
-                        $("#popupGetEmail").popup("close");
 
+                        $("#popupGetEmail").popup("close");
                     }
-                    ;
-                })
+
+                });
             }
 
             //Review Pages
@@ -167,7 +171,14 @@ function init() {
 
                 $("#btnSettingsAbout").on("click", function () {
                     $("#popupAbout").popup("open");
-                })
+                });
+
+                $("#btnSettingsSave").on("click", function () {
+                    if ($("#frmSettings").valid()) {
+                        alert("Email has been updated");
+                        localStorage.setItem("email", $("#txtSettingsEmail").val());
+                    }
+                });
             }
         });
     });
