@@ -116,18 +116,14 @@ function init() {
                         }
                     });
 
-
-                    //TODO: Move this to facade
                     $("#btnSearchBooks").on("click", function (element) {
-                            element.preventDefault();
-                            if (doValidate_frmSearchBookReview()) {
-                                var filter = getSearchFilters();
-                                showReviews(filter[0], filter[1]);
+                        element.preventDefault();
+                        if (doValidate_frmSearchBookReview()) {
+                            var filter = getSearchFilters();
+                            showReviews(filter[0], filter[1]);
 
-                            }
                         }
-                    )
-                    ;
+                    });
                 }
 
                 //Saved Page
@@ -135,14 +131,24 @@ function init() {
                     $("#btnCapturePhoto").on("click", function () {
                         savePhoto();
                     });
-                    $("#pageSaved").on("pageshow", function (){
-                       var container = $("#savedBookGalery");
+                    $("#pageSaved").on("pageshow", function () {
+                        var container = $("#savedBookGalery");
 
-                       var code = "";
+                        var code = "";
+                        SavedBooks.selectByField(["savedEmail"], [localStorage.getItem("email")],
+                            function (tx, results) {
+                                if (results.rows.length > 0) {
+                                    for (var i = 0; i < results.rows.length; i++) {
+                                        var path = results.rows.item(i).savedURI;
+                                        code += "<img src='" + path + "'>";
+                                    }
+                                }
+                            },
+                            function (tx, results) {
+                                alert("Unable to load images");
+                            });
 
-
-
-                       container.append(code);
+                        container.append(code);
 
                     });
                 }

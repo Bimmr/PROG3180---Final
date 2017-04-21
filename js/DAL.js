@@ -252,23 +252,22 @@ var SavedBooks = {
      */
     selectByField: function (fields, values, sCallback, fCallback) {
         db.transaction(function (tx) {
-            var query = "SELECT * FROM SavedBooks WHERE " + fields + "=?;";
-            var options = [values];
-            if (fields.constructor === Array) {
-                query = "SELECT * FROM Books WHERE ";
+
+            var query = "SELECT * FROM SavedBooks WHERE " + fields + " LIKE ?;";
+            var options = ["%" + values + "%"];
+            if (fields.constructor == Array) {
+                query = "SELECT * FROM SavedBooks WHERE ";
                 options = [];
                 for (var i = 0; i < fields.length; i++) {
                     if (i > 0)
                         query += " AND ";
-                    query += fields[i] + "=?";
-                    options.push(values[i]);
+                    query += fields[i] + " LIKE ?";
+                    options.push("%" + values[i] + "%");
                 }
                 query += ";";
             }
-
             tx.executeSql(query, options, sCallback, fCallback);
         }, errorHandler, successfulTransaction);
-
     },
     /**
      * Update a specific record into the database
