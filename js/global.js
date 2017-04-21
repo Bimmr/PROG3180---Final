@@ -20,127 +20,131 @@ function init() {
         $.get("./settings.html", function (data) {
             $("body").append(data);
 
-
-            //Turn off native menus
-            $.mobile.selectmenu.prototype.options.nativeMenu = false;
-
-
-            //TODO: Move this to facade
-            //Add book types to select
-            BookTypes.SelectAll(
-                function (tx, results) {
-                    var code = "";
-
-                    for (var i = 0; i < results.rows.length; i++) {
-                        code += "<option value='" + results.rows.item(i).typeId + "'>";
-                        code += results.rows.item(i).typeName;
-                        code += "</option>";
-                    }
-                    $("#txtSearchGenre").append(code).hide().show();
-
-                },
-                function () {
-                    alert("Something went wrong whilst loading book types. Please try again.");
-                }
-            );
+            $.get("./saved.html", function (data) {
+                $("body").append(data);
 
 
-            //Navbar
-            {
-                //Setup panel navbar
-                $('#navbar').enhanceWithin().panel();
-
-                //Listen for swipe to open nav
-                $("body").on("swiperight", function () {
-                    $("#navbar").panel("open");
-                });
-            }
-
-            //Home
-            {
-                if (localStorage.getItem("email") == null)
-                    $("#popupGetEmail").popup("open");
-                else
-                    setEmail(localStorage.getItem("email"));
-
-                $("#btnHomeEmail").on("click", function (element) {
-                    element.preventDefault();
-
-                    //TODO: Move validate to Facade
-                    if ($("#frmGetEmail").valid()) {
-
-                        var email = $("#txtHomeEmail").val();
-                        setEmail(email);
-                        $("#popupGetEmail").popup("close");
-                    }
-
-                });
-            }
-
-            //Review Pages
-            {
-
-                //Update validator on anything changing
-                $("#frmSearchBook, #datSearchDatePublished").on("change", function () {
-                    doValidate_frmSearchBookReview();
-                });
-
-                $("#frmSearchBook input").on("keyup", function () {
-                    doValidate_frmSearchBookReview();
-                });
-
-                $("#btnAddReviewSubmit").on("click", function (element) {
-                    element.preventDefault();
-                    if (doValidate_frmWriteReview()) {
-                        var bookId = localStorage.getItem("NewReviewOnBook");
-                        var email = $("#txtAddReviewEmail").val();
-                        var title = $("#txtAddReviewTitle").val();
-                        var text = $("#txtAddReviewText").val();
-                        var rating = $("#numAddReviewRating").val();
-                        var d = new Date();
-                        var date = d.getMonth() + "/" + d.getDay() + "/" + d.getFullYear();
-                        var votes = 0;
-
-                        Reviews.insert([email, date, title, text, rating, votes, bookId],
-                            function () {
-                                alert("New Review has been added");
-                                var filters = getSearchFilters();
-                                showReviews(filters[0], filters[1]);
-                            },
-                            function () {
-
-                            });
-                    }
-                });
+                //Turn off native menus
+                $.mobile.selectmenu.prototype.options.nativeMenu = false;
 
 
                 //TODO: Move this to facade
-                $("#btnSearchBooks").on("click", function (element) {
-                        element.preventDefault();
-                        if (doValidate_frmSearchBookReview()) {
-                            var filter = getSearchFilters();
-                            showReviews(filter[0], filter[1]);
+                //Add book types to select
+                BookTypes.SelectAll(
+                    function (tx, results) {
+                        var code = "";
 
+                        for (var i = 0; i < results.rows.length; i++) {
+                            code += "<option value='" + results.rows.item(i).typeId + "'>";
+                            code += results.rows.item(i).typeName;
+                            code += "</option>";
                         }
+                        $("#txtSearchGenre").append(code).hide().show();
+
+                    },
+                    function () {
+                        alert("Something went wrong whilst loading book types. Please try again.");
                     }
-                )
-                ;
-            }
+                );
 
-            //Settings Pages
-            {
 
-                $("#btnSettingsAbout").on("click", function () {
-                    $("#popupAbout").popup("open");
-                });
+                //Navbar
+                {
+                    //Setup panel navbar
+                    $('#navbar').enhanceWithin().panel();
 
-                $("#btnSettingsSave").on("click", function () {
-                    if ($("#frmSettings").valid()) {
-                        alert("Email has been updated");
-                        localStorage.setItem("email", $("#txtSettingsEmail").val());
-                    }
-                });
-            }
+                    //Listen for swipe to open nav
+                    $("body").on("swiperight", function () {
+                        $("#navbar").panel("open");
+                    });
+                }
+
+                //Home
+                {
+                    if (localStorage.getItem("email") == null)
+                        $("#popupGetEmail").popup("open");
+                    else
+                        setEmail(localStorage.getItem("email"));
+
+                    $("#btnHomeEmail").on("click", function (element) {
+                        element.preventDefault();
+
+                        //TODO: Move validate to Facade
+                        if ($("#frmGetEmail").valid()) {
+
+                            var email = $("#txtHomeEmail").val();
+                            setEmail(email);
+                            $("#popupGetEmail").popup("close");
+                        }
+
+                    });
+                }
+
+                //Review Pages
+                {
+
+                    //Update validator on anything changing
+                    $("#frmSearchBook, #datSearchDatePublished").on("change", function () {
+                        doValidate_frmSearchBookReview();
+                    });
+
+                    $("#frmSearchBook input").on("keyup", function () {
+                        doValidate_frmSearchBookReview();
+                    });
+
+                    $("#btnAddReviewSubmit").on("click", function (element) {
+                        element.preventDefault();
+                        if (doValidate_frmWriteReview()) {
+                            var bookId = localStorage.getItem("NewReviewOnBook");
+                            var email = $("#txtAddReviewEmail").val();
+                            var title = $("#txtAddReviewTitle").val();
+                            var text = $("#txtAddReviewText").val();
+                            var rating = $("#numAddReviewRating").val();
+                            var d = new Date();
+                            var date = d.getMonth() + "/" + d.getDay() + "/" + d.getFullYear();
+                            var votes = 0;
+
+                            Reviews.insert([email, date, title, text, rating, votes, bookId],
+                                function () {
+                                    alert("New Review has been added");
+                                    var filters = getSearchFilters();
+                                    showReviews(filters[0], filters[1]);
+                                },
+                                function () {
+
+                                });
+                        }
+                    });
+
+
+                    //TODO: Move this to facade
+                    $("#btnSearchBooks").on("click", function (element) {
+                            element.preventDefault();
+                            if (doValidate_frmSearchBookReview()) {
+                                var filter = getSearchFilters();
+                                showReviews(filter[0], filter[1]);
+
+                            }
+                        }
+                    )
+                    ;
+                }
+
+                //Settings Pages
+                {
+
+                    $("#btnSettingsAbout").on("click", function () {
+                        $("#popupAbout").popup("open");
+                    });
+
+                    $("#btnSettingsSave").on("click", function () {
+                        if ($("#frmSettings").valid()) {
+                            alert("Email has been updated");
+                            localStorage.setItem("email", $("#txtSettingsEmail").val());
+                        }
+                    });
+                }
+            });
         });
     });
 }
