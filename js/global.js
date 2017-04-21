@@ -32,8 +32,8 @@ function init() {
                     var code = "";
 
                     for (var i = 0; i < results.rows.length; i++) {
-                        code += "<option value='" + results.rows[i].typeId + "'>";
-                        code += results.rows[i].typeName;
+                        code += "<option value='" + results.rows.item(i).typeId + "'>";
+                        code += results.rows.item(i).typeName;
                         code += "</option>";
                     }
                     $("#txtSearchGenre").append(code).hide().show();
@@ -53,7 +53,6 @@ function init() {
                 //Listen for swipe to open nav
                 $("body").on("swiperight", function () {
                     $("#navbar").panel("open");
-
                 });
             }
 

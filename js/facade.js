@@ -33,7 +33,7 @@ function showReviews(fields, values) {
 
                 //Iterate through all books
                 for (var bRow = 0; bRow < bookResults.rows.length; bRow++) {
-                    getReviews(element, bookResults.rows[bRow]);
+                    getReviews(element, bookResults.rows.item(bRow));
                 }
 
                 setTimeout(function () {
@@ -67,7 +67,7 @@ function showReviews(fields, values) {
 
                 //Iterate through all review
                 for (var revRow = 0; revRow < reviewResults.rows.length; revRow++) {
-                    var reviewRow = reviewResults.rows[revRow];
+                    var reviewRow = reviewResults.rows.item(revRow);
                     code += "<li data-icon='none' class='ui-li-static ui-body-inherit'>";
                     code += "<p class='ui-li-aside'>" + reviewRow.reviewDate + "</p>";
                     code += "<h3>" + reviewRow.reviewTitle + "</h3>";

@@ -97,7 +97,7 @@ textarea.error {
     background-color: #f1f1f1;
 }
 
-#pageReviewSearch .ui-input-text {
+#pageReviewSearch .ui-input-text, #pageSettings .ui-input-text {
     padding-right: 0px !important;
 }
 
@@ -109,6 +109,7 @@ textarea.error {
     bottom: 1em;
     top: auto;
 }
+
 #reviewList li .bottom i {
     color: gray;
     background-color: #FAFAFA;
