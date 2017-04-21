@@ -101,7 +101,9 @@ var DB = {
                         "(NULL, 'edouglas@gmail.com', '2/12/2017', 'It was confusing', 'I found the story difficult " +
                         "to follow. Too many different plot points', 2, 2, 3)," +
                         "(NULL, 'dfusari@gmail.com', '8/18/2017', 'Okay.', 'Not very interesting." +
-                        "Couldntt finish it because I got too bored', 2,  0, 4)," +
+                        "Couldn't finish it because I got too bored', 2,  0, 5)," +
+                        "(NULL, 'gharvey@msn.ca', '7/19/2015', 'Super Fun Read.', 'I really enjoyed this book." +
+                        "I would recommend it highly for people even remotely interested', 5,  0, 8)," +
                         "(NULL, 'rbimmA@gmail.com', '12/25/2018', 'Excellent read', 'A classic book to curl up and read over christmas holidays', 4, 5, 1);";
                     tx.executeSql(query, [], function (tx, result) {
                         console.info("Success: Default Reviews Added");
