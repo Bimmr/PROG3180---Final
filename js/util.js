@@ -126,8 +126,8 @@ function doValidate_frmWriteReview() {
             },
             txtAddReviewText: {
                 required: "Please enter a review",
-                minlength: "Review must be at least 2 characters",
-                maxlength: "Review must be less than 25 characters"
+                minlength: "Review must be at least 10 characters",
+                maxlength: "Review must be less than 100 characters"
             },
             txtAddReviewEmail: {
                 required: "Please enter a valid email"
