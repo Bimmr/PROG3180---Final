@@ -16,15 +16,23 @@ Date:   4/19/17
                 data-iconpos="left"
                 data-theme="a" data-inline="false" class="">Take a Picture of a Book!
         </button>
-        <img id="hiddenImg" style="display: none">
 
-        <div id="savedBookGalery">
-
-
-
+        <div id="savedBookGallery">
         </div>
 
 
+        <!--Bigger Image Popup-->
+        <div id="popupImage" data-role="popup" data-transition="fade">
+            <header data-role="header">
+                <h1>Image:</h1>
+                <a href="#" data-role="none" data-rel="back"><i class="fa fa-close fa-3x" aria-hidden="true"></i></a>
+            </header>
+            <section data-role="content">
+                <div id="popupImage-wrapper">
+                    <img id="popupImageImg">
+                </div>
+            </section>
+        </div>
     </section>
 </div>
 

@@ -132,29 +132,11 @@ function init() {
                         savePhoto();
                     });
                     $("#pageSaved").on("pageshow", function () {
-                        var container = $("#savedBookGalery");
-
-                        var code = "";
-                        SavedBooks.selectByField(["savedEmail"], [localStorage.getItem("email")],
-                            function (tx, results) {
-                                if (results.rows.length > 0) {
-                                    for (var i = 0; i < results.rows.length; i++) {
-                                        var path = results.rows.item(i).savedURI;
-                                        code += "<img src='" + path + "'>";
-                                    }
-                                }
-                            },
-                            function (tx, results) {
-                                alert("Unable to load images");
-                            });
-
-                        container.append(code);
-
+                       showSavedGallery();
                     });
                 }
                 //Settings Pages
                 {
-
                     $("#btnSettingsAbout").on("click", function () {
                         $("#popupAbout").popup("open");
                     });

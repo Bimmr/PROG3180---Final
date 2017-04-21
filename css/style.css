@@ -133,3 +133,9 @@ header i {
 header i:focus, header i:active {
     color: white;
 }
+#popupImage-wrapper{
+    height: 100%;
+}
+#popupImageImg {
+    height: 100%;
+}

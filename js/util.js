@@ -181,4 +181,26 @@ function setEmail(email) {
     $("#txtAddReviewEmail").val(email);
 }
 
+/**
+ * Display the saved gallery
+ */
+function showSavedGallery() {
+    var container = $("#savedBookGallery");
+    container.html("");
+
+    var code = "";
+    SavedBooks.selectByField(["savedEmail"], [localStorage.getItem("email")],
+        function (tx, results) {
+            if (results.rows.length > 0) {
+                for (var i = 0; i < results.rows.length; i++) {
+                    var path = results.rows.item(i).savedURI;
+                    code += "<img src='" + path + "' style='height: 150px; padding: 5px;'>";
+                }
+                container.append(code);
+            }
+        },
+        function (tx, results) {
+            alert("Unable to load images");
+        });
+}
 
