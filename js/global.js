@@ -62,18 +62,16 @@ function init() {
                 if (localStorage.getItem("email") == null)
                     $("#popupGetEmail").popup("open");
                 else
-                    localStorage.setItem("email", $("#txtHomeEmail").val());
+                    setEmail(localStorage.getItem("email"));
 
-
-                $("#btnHomeEmail").on("click", function () {
+                $("#btnHomeEmail").on("click", function (element) {
+                    element.preventDefault();
 
                     //TODO: Move validate to Facade
                     if ($("#frmGetEmail").valid()) {
 
                         var email = $("#txtHomeEmail").val();
-                        localStorage.setItem("email", email);
-                        $("#txtSettingsEmail").val(email);
-
+                        setEmail(email);
                         $("#popupGetEmail").popup("close");
                     }
 
@@ -87,92 +85,47 @@ function init() {
                 $("#frmSearchBook, #datSearchDatePublished").on("change", function () {
                     doValidate_frmSearchBookReview();
                 });
+
                 $("#frmSearchBook input").on("keyup", function () {
                     doValidate_frmSearchBookReview();
                 });
 
+                $("#btnAddReviewSubmit").on("click", function (element) {
+                    element.preventDefault();
+                    if (doValidate_frmWriteReview()) {
+                        var bookId = localStorage.getItem("NewReviewOnBook");
+                        var email = $("#txtAddReviewEmail").val();
+                        var title = $("#txtAddReviewTitle").val();
+                        var text = $("#txtAddReviewText").val();
+                        var rating = $("#numAddReviewRating").val();
+                        var d = new Date();
+                        var date = d.getMonth() + "/" + d.getDay() + "/" + d.getFullYear();
+                        var votes = 0;
 
-                //TODO: Move this to facade
-                $("#btnSearchBooks").on("click", function () {
-                    if (doValidate_frmSearchBookReview()) {
+                        Reviews.insert([email, date, title, text, rating, votes, bookId],
+                            function () {
+                                alert("New Review has been added");
+                                var filters = getSearchFilters();
+                                showReviews(filters[0], filters[1]);
+                            },
+                            function () {
 
-                        //Format fields and values into array
-                        var fields = [];
-                        var values = [];
-                        if ($("#txtSearchName").val().length !== 0) {
-                            fields.push("bookName");
-                            values.push($("#txtSearchName").val());
-                        }
-                        if ($("#txtSearchAuthor").val().length !== 0) {
-                            fields.push("bookAuthor");
-                            values.push($("#txtSearchAuthor").val());
-                        }
-                        if ($("#txtSearchGenre").val() !== "-1") {
-                            fields.push("bookTypeId");
-                            values.push($("#txtSearchGenre").val());
-                        }
-                        if ($("#datSearchDatePublished").val().length !== 0) {
-                            fields.push("bookPublishDate");
-                            values.push($("#datSearchDatePublished").val());
-                        }
-
-                        //Get all books that match fields
-                        Books.selectByField(fields, values,
-                            function (tx, bookResults) {
-                                if (bookResults.rows.length > 0) {
-                                    var element = $("#reviewList");
-                                    element.html("");
-                                    $.mobile.changePage("#pageShowReviews");
-
-                                    //Iterate through all books
-                                    for (var bRow = 0; bRow < bookResults.rows.length; bRow++) {
-                                        getReviews(element, bookResults.rows[bRow]);
-                                    }
-                                } else {
-                                    $.mobile.changePage("#pageReviewSearch");
-                                    alert("No books were found with those details");
-                                }
-                            }, errorHandler);
-
-                        //This has to be in a separate function to make sure bookRow isn't being overridden before it gets calls
-                        function getReviews(element, bookRow) {
-
-                            //Get all reviews that match the books
-                            Reviews.selectByField("bookId", bookRow.bookId,
-                                function (tx, reviewResults) {
-
-                                    //Manually set classes/etc because it doesn't work nicely when you have multiple listviews being added at the same time, to the same div
-                                    var code = "<ul data-role='listview' data-inset='true' class='ui-listview ui-listview-inset ui-corner-all ui-shadow'>";
-                                    code += "<li data-role='list-divider' role='heading' class='ui-li-divider ui-bar-inherit'> <h1>" + bookRow.bookName + " (" + bookRow.bookAuthor + ")" + "</h1></li>";
-
-                                    //Iterate through all review
-                                    for (var revRow = 0; revRow < reviewResults.rows.length; revRow++) {
-                                        var reviewRow = reviewResults.rows[revRow];
-                                        code += "<li data-icon='none' class='ui-li-static ui-body-inherit'>";
-                                        code += "<p class='ui-li-aside'>" + reviewRow.reviewDate + "</p>";
-                                        code += "<h3>" + reviewRow.reviewTitle + "</h3>";
-                                        code += "<p>" + reviewRow.reviewText + "</p>";
-                                        for (var rate = 1; rate <= 5; rate++)
-                                            code += "<i class='fa fa-star" + (rate <= reviewRow.reviewRating ? "" : "-o") + "' aria-hidden='true'></i>";
-                                        code += "<p>" + reviewRow.reviewEmail + "</p>";
-                                        code += "</li>";
-                                    }
-                                    code += "<li data-icon='plus'><a href='#' class='ui-btn ui-btn-icon-right ui-icon-plus'><h1>Add A New Review</h1></a></li>";
-                                    code += "</ul>";
-                                    element.append(code);
-
-                                },
-                                function () {
-                                    var code = "<ul data-role='listview' data-inset='true' class='ui-listview ui-listview-inset ui-corner-all ui-shadow'>";
-                                    code += "<li data-role='list-divider' role='heading' class='ui-li-divider ui-bar-inherit'> <h1>" + bookRow.bookName + " (" + bookRow.bookAuthor + ")" + "</h1></li>";
-                                    code += "<li data-icon='plus'><a href='#' class='ui-btn ui-btn-icon-right ui-icon-plus'><h1>Add A New Review</h1></a></li>";
-                                    code += "</ul>";
-                                    element.append(code);
-                                }
-                            );
-                        }
+                            });
                     }
                 });
+
+
+                //TODO: Move this to facade
+                $("#btnSearchBooks").on("click", function (element) {
+                        element.preventDefault();
+                        if (doValidate_frmSearchBookReview()) {
+                            var filter = getSearchFilters();
+                            showReviews(filter[0], filter[1]);
+
+                        }
+                    }
+                )
+                ;
             }
 
             //Settings Pages

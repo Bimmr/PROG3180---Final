@@ -36,17 +36,17 @@ var DB = {
                     var query = "INSERT INTO BookTypes (typeName) VALUES " +
                         "('Fiction')," +
                         "('Non-Fiction');";
-
                     tx.executeSql(query, [], function (tx, result) {
                         console.info("Success: Default Types Added");
                     }, errorHandler);
                 }, errorHandler, successfulTransaction);
+
             }, errorHandler);
         }, errorHandler, successfulTransaction);
 
         //Create Book Table
         db.transaction(function (tx) {
-            var query = "CREATE TABLE IF NOT EXISTS Books (" +
+            var query = "CREATE TABLE Books (" +
                 "bookId             INTEGER      NOT NULL       PRIMARY KEY     AUTOINCREMENT," +
                 "bookName           VARCHAR(25)  NOT NULL," +
                 "bookAuthor         VARCHAR(25)  NOT NULL," +
@@ -58,12 +58,28 @@ var DB = {
             tx.executeSql(query, [], function (tx, result) {
                 console.info("Success: Book Table created");
 
+                db.transaction(function (tx) {
+                    var query = "INSERT INTO Books VALUES " +
+                        "(NULL, 'The Great Gatsby', 'F. Scott Fitzgerald', '5/22/1925', 1)," +
+                        "(NULL, 'To Kill a Mocking Bird', 'Harper Lee', '6/8/1960', 1)," +
+                        "(NULL, 'Lord of the Flies', 'William Godling', '3/1/1954', 1)," +
+                        "(NULL, 'Persuasion', 'Jane Austen', '12/4/1890', 1)," +
+                        "(NULL, 'Night', 'Elie Wiesel', '1/1/1958', 2)," +
+                        "(NULL, 'Yes Please', 'Amy Poehler', '4/1/2014', 2)," +
+                        "(NULL, 'The God Delusion', 'Richard Dawkins', '11/4/2006', 2)," +
+                        "(NULL, 'Me Talk Pretty One Day', 'David Sedaris', '7/25/2000', 2)," +
+                        "(NULL, 'Wuthering Heights', 'Emile Bronte', '3/12/1847', 1);";
+                    tx.executeSql(query, [], function (tx, result) {
+                        console.info("Success: Default Books Added");
+                    }, errorHandler);
+                }, errorHandler, successfulTransaction);
+
             }, errorHandler);
         }, errorHandler, successfulTransaction);
 
         //Create Review Table
         db.transaction(function (tx) {
-            var query = "CREATE TABLE IF NOT EXISTS Reviews (" +
+            var query = "CREATE TABLE Reviews (" +
                 "reviewId             INTEGER       NOT NULL       PRIMARY KEY     AUTOINCREMENT," +
                 "reviewEmail          VARCHAR(25)   NOT NULL," +
                 "reviewDate           DATETIME      NOT NULL," +
@@ -77,6 +93,21 @@ var DB = {
 
             tx.executeSql(query, [], function (tx, result) {
                 console.info("Success: Review Table created");
+
+                db.transaction(function (tx) {
+                    var query = "INSERT INTO Reviews VALUES " +
+                        "(NULL, 'jsmith@yahoo.ca', '3/6/2016', 'Classic!', 'I loved this novel! Its such a good read, " +
+                        "definitely worth looking in to.', 5, 5, 1)," +
+                        "(NULL, 'edouglas@gmail.com', '2/12/2017', 'It was confusing', 'I found the story difficult " +
+                        "to follow. Too many different plot points', 2, 2, 3)," +
+                        "(NULL, 'dfusari@gmail.com', '8/18/2017', 'Okay.', 'Not very interesting." +
+                        "Couldntt finish it because I got too bored', 2,  0, 4)," +
+                        "(NULL, 'rbimmA@gmail.com', '12/25/2018', 'Excellent read', 'A classic book to curl up and read over christmas holidays', 4, 5, 1);";
+                    tx.executeSql(query, [], function (tx, result) {
+                        console.info("Success: Default Reviews Added");
+                    }, errorHandler);
+                }, errorHandler, successfulTransaction);
+
             }, errorHandler);
         }, errorHandler, successfulTransaction);
 
@@ -120,46 +151,4 @@ function errorHandler(tx, error) {
 }
 function successfulTransaction() {
     console.info("Success: Transaction is successful");
-}
-
-/**
- * Load app in chrome, open console and type "addDataToDatabase();"
- */
-function addDataToDatabase() {
-    alert("Data added to database");
-    //Add Default Types
-    db.transaction(function (tx) {
-        var query = "INSERT INTO Books VALUES " +
-            "(NULL, 'The Great Gatsby', 'F. Scott Fitzgerald', '5/22/1925', 1)," +
-            "(NULL, 'To Kill a Mocking Bird', 'Harper Lee', '6/8/1960', 1)," +
-            "(NULL, 'Lord of the Flies', 'William Godling', '3/1/1954', 1)," +
-            "(NULL, 'Persuasion', 'Jane Austen', '12/4/1890', 1)," +
-            "(NULL, 'Night', 'Elie Wiesel', '1/1/1958', 2)," +
-            "(NULL, 'Yes Please', 'Amy Poehler', '4/1/2014', 2)," +
-            "(NULL, 'The God Delusion', 'Richard Dawkins', '11/4/2006', 2)," +
-            "(NULL, 'Me Talk Pretty One Day', 'David Sedaris', '7/25/2000', 2)," +
-            "(NULL, 'Wuthering Heights', 'Emile Bronte', '3/12/1847', 1);";
-
-        tx.executeSql(query, [], function (tx, result) {
-            console.info("Success: Default Books Added");
-        }, errorHandler);
-    }, errorHandler, successfulTransaction);
-
-    db.transaction(function (tx) {
-        var query = "INSERT INTO Reviews VALUES " +
-            "(NULL, 'jsmith@yahoo.ca', '3/6/2016', 'Classic!', 'I loved this novel! Its such a good read, " +
-            "definitely worth looking in to.', 5, 5, 1)," +
-            "(NULL, 'edouglas@gmail.com', '2/12/2017', 'It was confusing', 'I found the story difficult " +
-            "to follow. Too many different plot points', 2, 2, 3)," +
-            "(NULL, 'dfusari@gmail.com', '8/18/2017', 'Okay.', 'Not very interesting." +
-            "Couldntt finish it because I got too bored', 2,  0, 4)," +
-            "(NULL, 'rbimmA@gmail.com', '12/25/2018', 'Excellent read', 'A classic book to curl up and read over christmas holidays', 4, 5, 1);";
-
-
-        tx.executeSql(query, [], function (tx, result) {
-            console.info("Success: Default Reviews Added");
-        }, errorHandler);
-    }, errorHandler, successfulTransaction);
-
-
 }

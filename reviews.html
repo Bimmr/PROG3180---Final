@@ -35,7 +35,7 @@ Date:   4/8/17
                 <input type="date" id="datSearchDatePublished" name="datSearchDatePublished" data-clear-btn="true">
             </div>
 
-            <input type="button" data-role="button" id="btnSearchBooks" value="Search">
+            <input type="submit" data-role="button" id="btnSearchBooks" value="Search">
         </form>
     </section>
 </div>
@@ -61,37 +61,27 @@ Date:   4/8/17
     <section data-role="content">
 
         <form id="frmWriteReview">
+
             <div data-role="fieldcontain">
-                <label for="txtBookTitle">Book Title:</label>
-                <input type="text" id="txtBookTitle" name="txtBookTitle" data-clear-btn="true">
+                <label for="txtAddReviewEmail">Your Email:</label>
+                <input type="text" id="txtAddReviewEmail" name="txtAddReviewEmail" data-clear-btn="true">
             </div>
 
             <div data-role="fieldcontain">
-                <label for="txtUserName">Your User Name:</label>
-                <input type="text" id="txtUserName" name="txtUserName" data-clear-btn="true">
+                <label for="txtAddReviewTitle">Review Title:</label>
+                <input type="text" id="txtAddReviewTitle" name="txtAddReviewTitle" data-clear-btn="true">
+
+                <label for="txtAddReviewText">Review:</label>
+                <textarea id="txtAddReviewText" name="txtAddReviewText" data-clear-btn="true"></textarea>
             </div>
 
             <div data-role="fieldcontain">
-                <label for="txtEmail">Your Email:</label>
-                <input type="text" id="txtEmail" name="txtBookTitle" data-clear-btn="true">
+                <label for="numAddReviewRating">Rating</label>
+                <input type="number" id="numAddReviewRating" name="numAddReviewRating" data-clear-btn="true" max="5"
+                       min="1">
             </div>
 
-            <div data-role="fieldcontain">
-                <label for="txtReviewTitle">Review Title:</label>
-                <input type="text" id="txtReviewTitle" name="txtReviewTitle" data-clear-btn="true">
-            </div>
-
-            <div data-role="fieldcontain">
-                <label for="txtReviewText">Review:</label>
-                <textarea id="txtReviewText" name="txtReviewText" data-clear-btn="true"></textarea>
-            </div>
-
-            <div data-role="fieldcontain">
-                <label for="datReviewDate">Book Title:</label>
-                <input type="text" id="datReviewDate" name="datReviewDate" data-clear-btn="true">
-            </div>
-
-            <input type="submit" data-role="button" id="btnSubmit" value="Submit Review"></input>
+            <input type="submit" data-role="button" id="btnAddReviewSubmit" value="Submit Review">
 
         </form>
     </section>

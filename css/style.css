@@ -105,6 +105,21 @@ textarea.error {
     font-style: italic;
 }
 
+#reviewList li .bottom {
+    bottom: 1em;
+    top: auto;
+}
+#reviewList li .bottom i {
+    color: gray;
+    background-color: #FAFAFA;
+    position: relative;
+    left: 3px;
+}
+
+#reviewList li p {
+    white-space: normal;
+}
+
 #popupAbout section {
     padding-bottom: 50px;
 }

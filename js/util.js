@@ -80,7 +80,7 @@ function doValidate_frmSearchBookReview() {
         }, groups: {
             inputGroup: "txtSearchName txtSearchAuthor datSearchDatePublished txtSearchGenre"
         },
-        errorPlacement: function(error, element) {
+        errorPlacement: function (error, element) {
             error.insertAfter("#searchErrorText");
 
             //$("#frmSearchBook .ui-select").addClass(".error");
@@ -95,12 +95,12 @@ function doValidate_frmWriteReview() {
     var form = $("#frmWriteReview");
     form.validate({
         rules: {
-            txtBookTitle: {
+            txtAddReviewTitle: {
                 required: true,
                 minlength: 2,
                 maxlength: 25
             },
-            txtUserName: {
+            txtAddReviewEmail: {
                 required: true
             },
             txtEmail: {
@@ -108,37 +108,77 @@ function doValidate_frmWriteReview() {
                 email: true,
                 emailcheck: true
             },
-            txtReviewTitle: {
-                required: true
+            txtAddReviewText: {
+                required: true,
+                minlength: 10,
+                maxlength: 50
             },
-            txtReviewText: {
-                required: true
+            numAddReviewRating: {
+                min: 1,
+                max: 5
             }
         },
         messages: {
-            txtBookTitle: {
-                required: "Please enter a book title",
-                minlength: "Book title must be atleast 2 characters",
-                maxlength: "Book title must be less than 25 characters"
+            txtAddReviewTitle: {
+                required: "Please enter a review title",
+                minlength: "Review title must be at least 2 characters",
+                maxlength: "Review title must be less than 25 characters"
             },
-            txtUserName: {
-                required: "Please enter a user name"
+            txtAddReviewText: {
+                required: "Please enter a review",
+                minlength: "Review must be at least 2 characters",
+                maxlength: "Review must be less than 25 characters"
             },
-            txtEmail: {
+            txtAddReviewEmail: {
+                required: "Please enter a valid email"
+            },
+            numAddReviewRating: {
                 required: "Please enter an email",
                 emailcheck: "Please enter a valid email address"
-            },
-            txtReviewTitle: {
-                requried: "Please enter a review title"
-            },
-            txtReviewText: {
-                requried: "Please enter a review"
             }
-
         }
     });
     return form.valid();
+}
 
+
+/**
+ * Get list of fields, and list of values
+ * @returns {[fields,values]}
+ */
+function getSearchFilters() {
+
+    //Format fields and values into array
+    var fields = [];
+    var values = [];
+    if ($("#txtSearchName").val().length !== 0) {
+        fields.push("bookName");
+        values.push($("#txtSearchName").val());
+    }
+    if ($("#txtSearchAuthor").val().length !== 0) {
+        fields.push("bookAuthor");
+        values.push($("#txtSearchAuthor").val());
+    }
+    if ($("#txtSearchGenre").val() !== "-1") {
+        fields.push("bookTypeId");
+        values.push($("#txtSearchGenre").val());
+    }
+    if ($("#datSearchDatePublished").val().length !== 0) {
+        fields.push("bookPublishDate");
+        values.push($("#datSearchDatePublished").val());
+    }
+
+    return [fields, values];
+}
+
+/**
+ * Update the email
+ * @param email
+ */
+function setEmail(email) {
+    localStorage.setItem("email", email);
+    $("#txtSettingsEmail").val(email);
+    $("#txtAddReviewEmail").val(email);
 }
 
 
