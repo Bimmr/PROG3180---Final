@@ -15,6 +15,7 @@ function capturePhoto(sCallback, fCallback) {
 function savePhoto() {
     capturePhoto(
         function (imageURI) {
+            alert("Success: " + ex);
             //Add Saved to database
         }, function (ex) {
             alert("Failed: " + ex);

@@ -130,6 +130,22 @@ function init() {
                     ;
                 }
 
+                //Saved Page
+                {
+                    $("#btnCapturePhoto").on("click", function () {
+                        savePhoto();
+                    });
+                    $("#pageSaved").on("pageshow", function (){
+                       var container = $("#savedBookGalery");
+
+                       var code = "";
+
+
+
+                       container.append(code);
+
+                    });
+                }
                 //Settings Pages
                 {
 
